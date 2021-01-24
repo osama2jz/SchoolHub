@@ -74,8 +74,9 @@ export default makeStyles(theme => ({
     textAlign:'center',
     alignItems:'center',
     marginTop:'5px',
-    borderTop:'1px solid black',
-    borderBottom:'1px solid black',
+    borderTop:'1px solid rgba(0,0,0, 0.2)',
+    borderBottom:'1px solid rgba(0,0,0, 0.2)',
+    
   },
   like:{
     display:"flex",
@@ -115,7 +116,7 @@ export default makeStyles(theme => ({
   commentbox:{
     display:"flex",
     flexDirection:'row',
-    borderBottom:'1px solid black',
+    borderBottom:'1px solid rgba(0,0,0, 0.2)',
   },
   postButton:{
       color:"white",
@@ -138,7 +139,7 @@ export default makeStyles(theme => ({
     display:"flex",
     flexDirection:'row',
     alignItems:"center",
-    borderBottom: "1px Solid black",
+    borderBottom:'1px solid rgba(0,0,0, 0.3)',
     paddingBottom:"5px",
     marginBottom:'5px',
 

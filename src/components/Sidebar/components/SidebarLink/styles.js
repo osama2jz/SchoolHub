@@ -2,13 +2,15 @@ import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles(theme => ({
   link: {
+    paddingRight:'120px',
     textDecoration: "none",
     "&:hover, &:focus": {
-      backgroundColor: theme.palette.background.light,
+      backgroundColor: 'theme.palette.background.light',
     },
   },
   linkActive: {
-    backgroundColor: theme.palette.background.light,
+    backgroundColor: '#E1E1E1',
+    color:'white',
   },
   linkNested: {
     paddingLeft: 0,
@@ -23,9 +25,11 @@ export default makeStyles(theme => ({
     width: 24,
     display: "flex",
     justifyContent: "center",
+    color: '#a20a0a',
   },
   linkIconActive: {
-    color: theme.palette.primary.main,
+    color: '#a20a0a',
+
   },
   linkText: {
     padding: 0,

@@ -14,7 +14,7 @@ export default makeStyles(theme => ({
   },
   sidebarList:{
     width:"100%",
-    paddingRight:"100px"
+    
   },
   
   toolbar: {

@@ -2,6 +2,7 @@ import React,{ Fragment } from "react";
 import { Grid } from "@material-ui/core";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import marker from '../../logo.png'
 import { TextField, InputBase } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import Widget from "../../components/Widget/Widget";
@@ -9,9 +10,9 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import useStyles from "./styles";
 
 const customMarker = new L.icon({
-  iconUrl: '/images/poemEditorTools/location-pointer-new.svg',
-  iconSize: [56, 72],
-  iconAnchor: [26, 72],
+  iconUrl: require("../../marker.png"),
+  iconSize: [25, 25],
+  iconAnchor: [0, 0],
 }); 
 const MyMarkersList = ({ markers }) => {
   const items = markers.map(({ key, ...props }) => (
@@ -26,11 +27,18 @@ const MyPopupMarker = ({ content, position }) => (
   </Marker>
 )
 const markers = [
-  { key: 'marker1', position: [51.5, -0.1], content: 'My first popup' },
-  { key: 'marker2', position: [51.51, -0.1], content: 'My second popup' },
-  { key: 'marker3', position: [51.49, -0.05], content: 'My third popup' },
+  { key: 'marker1', position: [33.647895, 73.028724], content: 'My first popup' },
+  { key: 'marker2', position: [33.6879129, 73.0314367], content: 'My second popup' },
+  { key: 'marker3', position: [33.652868, 73.157333], content: 'My third popup' },
+  { key: 'marker3', position: [29.9248291, 70.945715], content: 'My third popup' },
+  { key: 'marker3', position: [30.857321, 69.240635], content: 'My third popup' },
 ]
-
+const Schools=[
+  {id:'1', name: 'Army Public School, Islamabad', location:'I-8 markaz, Islamabad' },
+  {id:'2',name: 'Pak Turk International School, Islamabad', location:'Taramri chowk, Islamabad' },
+  {id:'3',name: 'Grafton School, Islamabad', location:'Taramri chowk, Islamabad' }
+]
+ 
 
 export default function Maps() {
   var classes = useStyles();
@@ -44,13 +52,23 @@ export default function Maps() {
                 <InputBase  placeholder='Search here...'></InputBase>
                 <SearchIcon fontSize='large' className='icon'/>
               </div>
+              
+              <div >
+                {Schools.map(function(item){return (
+                <div class={classes.result}>
+                  <text>{item.name}</text>
+                   <br/> 
+                  <text style={{fontSize:'10px'}}>{item.location}</text>
+                </div>
+                   )})}
+              </div>
               </Widget>
             </Grid>
 
             <Grid item md={9}>
             <Widget disableWidgetMenu>
               <MapContainer center={position}
-                  zoom={5}
+                  zoom={6}
                   className={classes.mapContainer}
                   >
                 <TileLayer 

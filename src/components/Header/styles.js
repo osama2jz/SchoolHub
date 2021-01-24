@@ -3,7 +3,7 @@ import { fade } from "@material-ui/core/styles/colorManipulator";
 
 export default makeStyles(theme => ({
   logotype: {
-    color: "white",
+    color: "#F5F5F5",
     marginLeft: theme.spacing(2.5),
     marginRight: theme.spacing(2.5),
     fontWeight: 500,
@@ -11,7 +11,11 @@ export default makeStyles(theme => ({
     whiteSpace: "nowrap",
     [theme.breakpoints.down("xs")]: {
       display: "none",
+      
     },
+    '&:hover':{
+      cursor:'pointer'
+    }
   },
   appBar: {
     backgroundColor:'#a20a0a',

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {AppBar,Toolbar,IconButton,InputBase,Menu,MenuItem,Fab,Link} from "@material-ui/core";
 import {MailOutline as MailIcon,NotificationsNone as NotificationsIcon,Person as AccountIcon,Search as SearchIcon,Send as SendIcon} from "@material-ui/icons";
 import classNames from "classnames";
+import Logo from './SchoolHubLogo.svg';
 // styles
 import useStyles from "./styles";
 // components
@@ -36,9 +37,11 @@ export default function Header(props) {
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
-        <Typography variant="h3" weight="bold" className={classes.logotype}>
+      
+        <Typography variant="h5" weight="bold" className={classes.logotype}>
           SCHOOLHUB
         </Typography>
+        
         <div className={classes.grow} />
         <div
           className={classNames(classes.search, {

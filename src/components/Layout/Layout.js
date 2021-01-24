@@ -33,7 +33,7 @@ function Layout(props) {
             <Switch>
               <Route path="/app/home" component={Home} />
               <Route path="/app/typography" component={Dashboard} />
-              <Route path="/app/tables" component={Maps} />
+              <Route path="/app/map" component={Maps} />
               <Route path="/app/notifications" component={Notifications} />
               <Route
                 exact

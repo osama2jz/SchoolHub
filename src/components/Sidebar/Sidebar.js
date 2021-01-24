@@ -11,8 +11,8 @@ import SidebarLink from "./components/SidebarLink/SidebarLink";
 import {useLayoutState} from "../../context/LayoutContext";
 
 const structure = [
-  {id: 0, label: "Home", link: "/app/home", icon: <HomeIcon/> },
-  {id: 1, label: "Map", link: "/app/tables", icon: <Map />},
+  {id: 0, label: "Home", link: "/app/home", icon: <HomeIcon /> },
+  {id: 1, label: "Map", link: "/app/map", icon: <Map />},
   {id: 2, label: "Statistics", link: "/app/ui", icon: <Stats /> },
   {id: 3,label: "Live Stream",link: "/app/notifications",icon: <Stream />},
   {id: 4,label: "another tab",link: "/app/ui",icon: <UIElementsIcon />},
