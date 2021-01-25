@@ -26,10 +26,12 @@
     "react-dom": "^16.14.0",
     "react-google-maps": "^9.4.5",
     "react-leaflet": "^3.0.5",
+    "react-responsive-carousel": "^3.2.11",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-syntax-highlighter": "^13.5.3",
     "react-toastify": "^6.0.8",
+    "reactjs-popup": "^2.0.4",
     "recharts": "^1.6.2",
     "tinycolor2": "^1.4.1"
   },

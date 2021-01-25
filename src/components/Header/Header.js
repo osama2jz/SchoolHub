@@ -6,7 +6,7 @@ import Logo from './SchoolHubLogo.svg';
 // styles
 import useStyles from "./styles";
 // components
-import { Badge, Typography, Button } from "../Wrappers";
+import { Badge, Typography, Button } from "../Wrappers/Wrappers";
 import Notification from "../Notification/Notification";
 import UserAvatar from "../UserAvatar/UserAvatar"; 
 // context

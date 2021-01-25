@@ -10,7 +10,7 @@ import useStyles from "./styles";
 
 // components
 import Widget from "../../../../components/Widget";
-import { Typography } from "../../../../components/Wrappers";
+import { Typography } from "../../../../components/Wrappers/Wrappers";
 
 export default function BigStat(props) {
   var { product, total, color, registrations, bounce } = props;

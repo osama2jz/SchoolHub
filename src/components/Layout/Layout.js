@@ -15,7 +15,7 @@ import Home from "../../pages/home/Home";
 import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
 import Tables from "../../pages/tables";
-import Icons from "../../pages/icons";
+import Landing from "../../pages/landing";
 import Charts from "../../pages/charts";
 
 function Layout(props) {
@@ -41,8 +41,7 @@ function Layout(props) {
                 render={() => <Redirect to="/app/ui/icons" />}
               />
               <Route path="/app/ui/maps" component={Charts} />
-              <Route path="/app/ui/icons" component={Icons} />
-              <Route path="/app/ui/charts" component={Charts} />
+              <Route path="/app/charts" component={Charts} />
             </Switch>
             <Box
               mt={5}
