@@ -2,13 +2,16 @@ import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles(theme => ({
   mapContainer: {
-    height: "75vh",
-    width:'113vh',
+    height: "100vh",
+    width:'149vh',
   },
   searchfield:{
     display:'flex',
     flexDirection:'row',
-    borderBottom:'1px solid black'
+    borderBottom:'1px solid black',
+    '&:focus':{
+      borderBottom:'1px solid black',
+    }
   },
   result:{
     borderBottom:'1px solid rgba(0,0,0, 0.3)',
@@ -18,6 +21,27 @@ export default makeStyles(theme => ({
       cursor:'default',
       borderRadius:'3px'
     }
+  },
+  search:{
+    display:'flex',
+    flexDirection:'row'
+  },
+  top:{
+    marginLeft:'15px',
+    width:'250px',
+    borderRadius:'5px',
+    '&:hover':{
+      cursor:'pointer',
+     opacity:'0.7'
+    }
+  },
+  toptitle:{
+    width:'100%',
+    marginLeft:'15px',
+    marginBottom:'10px',
+    fontSize:'30px',
+    fontWeight:'bold',
+    color:'#696969'
   },
   icon:{
     width:'30px',
@@ -44,16 +68,19 @@ export default makeStyles(theme => ({
     disply:"flex",
     flexDirection:'row',
     justifyContent:'space-around',
-    width:'100%'
+    width:'100%',
+    paddingBottom:'10px'
   },
   buttons:{
     float:'right',
   },
   feefield:{
     textAlign:'center',
-    borderBottom:'1px solid rgba(0,0,0, 0.2)', 
-    width:'20%', 
-    height:"25px",
+    border:'1px solid rgba(0,0,0, 0.2)', 
+    width:'50%', 
+    height:"30px",
     borderRadius:'5px'
   },
+
+  
 }));

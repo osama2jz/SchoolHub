@@ -9,7 +9,7 @@ import pic3 from './school3.jpg'
 export default class Slider extends Component {
     render() {
         return (
-            <Carousel autoPlay>
+            <Carousel infiniteLoop useKeyboardArrows autoPlay >
                 <div>
                     <img className="pic" src={pic1} />
                     <p className="legend">School Structures</p>

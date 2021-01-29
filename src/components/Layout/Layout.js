@@ -1,7 +1,7 @@
 import React from "react";
 import {Route,Switch,Redirect,withRouter,} from "react-router-dom";
-import {Box, IconButton, Link} from '@material-ui/core'
-import Icon from '@mdi/react'
+import {Box, IconButton, Link} from '@material-ui/core';
+import Icon from '@mdi/react';
 //icons
 import {mdiFacebook as FacebookIcon,mdiTwitter as TwitterIcon,mdiGithub as GithubIcon,} from '@mdi/js'
 // styles
@@ -14,13 +14,11 @@ import Dashboard from "../../pages/dashboard";
 import Home from "../../pages/home/Home";
 import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
-import Tables from "../../pages/tables";
-import Landing from "../../pages/landing";
 import Charts from "../../pages/charts";
+import Signin from '../../pages/profiling/signin/signinNew'
 
 function Layout(props) {
   var classes = useStyles();
-
   return (
     <div className={classes.root}>
         <>

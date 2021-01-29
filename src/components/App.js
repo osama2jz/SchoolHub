@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+import { HashRouter, Route, Switch, Redirect, Router } from "react-router-dom";
 
 // components
 import Layout from "./Layout";
@@ -7,26 +7,32 @@ import Layout from "./Layout";
 // pages
 import Error from "../pages/error";
 import Login from "../pages/login";
-import Landing from "../pages/landing"
+import Signin from '../pages/profiling/signin/signinNew'
+import Landing from './../pages/landing/Landing'
+
 // context
 import { useUserState } from "../context/UserContext";
+import Home from "../pages/home/Home";
+
 
 export default function App() {
   // global
   var { isAuthenticated } = useUserState();
 
-  return (
+  return (  
     <HashRouter>
       <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/app"render={() => <Redirect to="/app/dashboard" />}/>
+        {/* <Route exact path="/" component={Landing} /> */}
+        {/* <Route exact path="/" render={() => <Redirect to="/app/home" />} /> */}
+        {/* <Route exact path="/app" render={() => <Redirect to="/app/home" />}/> */}
+        <Route exact path="/" component={Login} />
         <PrivateRoute path="/app" component={Layout} />
         <PublicRoute path="/login" component={Login} />
         <Route component={Error} />
       </Switch>
     </HashRouter>
   );
-
+  
   // #######################################################################
 
   function PrivateRoute({ component, ...rest }) {

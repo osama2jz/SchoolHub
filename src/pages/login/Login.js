@@ -16,12 +16,12 @@ import classnames from "classnames";
 import useStyles from "./styles";
 
 // logo
-import logo from "./logo.svg";
+import logo from "../../logo.png";
 import google from "../../images/google.svg";
 
 // context
 import { useUserDispatch, loginUser } from "../../context/UserContext";
-
+import Widget from "../../components/Widget/Widget";
 function Login(props) {
   var classes = useStyles();
 
@@ -40,9 +40,11 @@ function Login(props) {
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
         <img src={logo} alt="logo" className={classes.logotypeImage} />
-        <Typography className={classes.logotypeText}>Material Admin</Typography>
+        <Typography className={classes.logotypeText}>SchoolHub</Typography>
       </div>
+
       <div className={classes.formContainer}>
+      <Widget disableWidgetMenu>
         <div className={classes.form}>
           <Tabs
             value={activeTabId}
@@ -57,7 +59,7 @@ function Login(props) {
           {activeTabId === 0 && (
             <React.Fragment>
               <Typography variant="h1" className={classes.greeting}>
-                Good Morning, User
+                Welcome to SchoolHub
               </Typography>
               <Button size="large" className={classes.googleButton}>
                 <img src={google} alt="google" className={classes.googleIcon} />
@@ -108,28 +110,26 @@ function Login(props) {
                   <CircularProgress size={26} className={classes.loginLoader} />
                 ) : (
                   <Button
+                  onClick={() =>
+                    loginUser(
+                      userDispatch,
+                      loginValue,
+                      passwordValue,
+                      props.history,
+                      setIsLoading,
+                      setError,
+                    )
+                  }
                     disabled={
                       loginValue.length === 0 || passwordValue.length === 0
                     }
-                    onClick={() =>
-                      loginUser(
-                        userDispatch,
-                        loginValue,
-                        passwordValue,
-                        props.history,
-                        setIsLoading,
-                        setError,
-                      )
-                    }
                     variant="contained"
-                    color="primary"
                     size="large"
                   >
                     Login
                   </Button>
                 )}
                 <Button
-                  color="primary"
                   size="large"
                   className={classes.forgetButton}
                 >
@@ -201,16 +201,7 @@ function Login(props) {
                   <CircularProgress size={26} />
                 ) : (
                   <Button
-                    onClick={() =>
-                      loginUser(
-                        userDispatch,
-                        loginValue,
-                        passwordValue,
-                        props.history,
-                        setIsLoading,
-                        setError,
-                      )
-                    }
+                   
                     disabled={
                       loginValue.length === 0 ||
                       passwordValue.length === 0 ||
@@ -244,10 +235,9 @@ function Login(props) {
             </React.Fragment>
           )}
         </div>
-        <Typography color="primary" className={classes.copyright}>
-        © 2014-{new Date().getFullYear()} <a style={{ textDecoration: 'none', color: 'inherit' }} href="https://flatlogic.com" rel="noopener noreferrer" target="_blank">Flatlogic</a>, LLC. All rights reserved.
-        </Typography>
+        </Widget>
       </div>
+      
     </Grid>
   );
 }

@@ -12,7 +12,7 @@ export default makeStyles(theme => ({
     left: 0,
   },
   logotypeContainer: {
-    backgroundColor: theme.palette.primary.main,
+   
     width: "60%",
     height: "100%",
     display: "flex",
@@ -31,7 +31,6 @@ export default makeStyles(theme => ({
     marginBottom: theme.spacing(4),
   },
   logotypeText: {
-    color: "white",
     fontWeight: 500,
     fontSize: 84,
     [theme.breakpoints.down("md")]: {
@@ -40,7 +39,7 @@ export default makeStyles(theme => ({
   },
   formContainer: {
     width: "40%",
-    height: "100%",
+    height: "93%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -133,6 +132,7 @@ export default makeStyles(theme => ({
   forgetButton: {
     textTransform: "none",
     fontWeight: 400,
+    color:"blue",
   },
   loginLoader: {
     marginLeft: theme.spacing(4),
