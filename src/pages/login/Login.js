@@ -11,7 +11,9 @@ import {
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
-
+import RadioGroup from "@material-ui/core/RadioGroup"
+import Radio from "@material-ui/core/Radio"
+import FormControlLabel from "@material-ui/core/FormControlLabel"
 // styles
 import useStyles from "./styles";
 
@@ -34,13 +36,14 @@ function Login(props) {
   var [activeTabId, setActiveTabId] = useState(0);
   var [nameValue, setNameValue] = useState("");
   var [loginValue, setLoginValue] = useState("admin@flatlogic.com");
+  var [phoneValue, setphoneValue] = useState("");
   var [passwordValue, setPasswordValue] = useState("password");
 
   return (
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
         <img src={logo} alt="logo" className={classes.logotypeImage} />
-        <Typography className={classes.logotypeText}>SchoolHub</Typography>
+        <Typography className={classes.logotypeText}>School-Hub</Typography>
       </div>
 
       <div className={classes.formContainer}>
@@ -58,8 +61,8 @@ function Login(props) {
           </Tabs>
           {activeTabId === 0 && (
             <React.Fragment>
-              <Typography variant="h1" className={classes.greeting}>
-                Welcome to SchoolHub
+              <Typography variant="h2" className={classes.greeting}>
+                Welcome to School-Hub
               </Typography>
               <Button size="large" className={classes.googleButton}>
                 <img src={google} alt="google" className={classes.googleIcon} />
@@ -75,6 +78,14 @@ function Login(props) {
                   Something is wrong with your login or password :(
                 </Typography>
               </Fade>
+              <text class={classes.signin}>Sign in as:</text>
+                <RadioGroup class={classes.radio}  >
+                  <FormControlLabel value="Admin" control={<Radio />} label="Admin" />
+                  <FormControlLabel value="Teacher" control={<Radio />} label="Teacher" />
+                  <FormControlLabel value="Student" control={<Radio />} label="Student" />
+                  <FormControlLabel value="Parent" control={<Radio />} label="Parent" />
+                </RadioGroup>
+              
               <TextField
                 id="email"
                 InputProps={{
@@ -140,17 +151,25 @@ function Login(props) {
           )}
           {activeTabId === 1 && (
             <React.Fragment>
-              <Typography variant="h1" className={classes.greeting}>
-                Welcome!
-              </Typography>
-              <Typography variant="h2" className={classes.subGreeting}>
+              <Typography variant="h2" className={classes.greeting}>
                 Create your account
               </Typography>
+              {/* <Typography variant="h3" className={classes.subGreeting}>
+                Create your account
+              </Typography> */}
               <Fade in={error}>
                 <Typography color="secondary" className={classes.errorMessage}>
                   Something is wrong with your login or password :(
                 </Typography>
               </Fade>
+              <text class={classes.signin}>Sign up as:</text>
+                <RadioGroup class={classes.radio}  >
+                  <FormControlLabel value="Admin" control={<Radio />} label="Admin" />
+                  <FormControlLabel value="Teacher" control={<Radio />} label="Teacher" />
+                  <FormControlLabel value="Student" control={<Radio />} label="Student" />
+                  <FormControlLabel value="Parent" control={<Radio />} label="Parent" />
+                </RadioGroup>
+
               <TextField
                 id="name"
                 InputProps={{
@@ -179,6 +198,21 @@ function Login(props) {
                 margin="normal"
                 placeholder="Email Adress"
                 type="email"
+                fullWidth
+              />
+              <TextField
+                id="phone"
+                InputProps={{
+                  classes: {
+                    underline: classes.textFieldUnderline,
+                    input: classes.textField,
+                  },
+                }}
+                value={phoneValue}
+                onChange={e => setphoneValue(e.target.value)}
+                margin="normal"
+                placeholder="Phone number"
+                type="number"
                 fullWidth
               />
               <TextField

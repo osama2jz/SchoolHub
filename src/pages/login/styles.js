@@ -26,12 +26,18 @@ export default makeStyles(theme => ({
       display: "none",
     },
   },
+  radio:{
+    display:'flex',
+    width:'100%',
+    flexDirection:'row'
+  },
   logotypeImage: {
     width: 165,
     marginBottom: theme.spacing(4),
   },
   logotypeText: {
-    fontWeight: 500,
+    color:'black',
+    fontWeight: 300,
     fontSize: 84,
     [theme.breakpoints.down("md")]: {
       fontSize: 48,
@@ -49,16 +55,20 @@ export default makeStyles(theme => ({
     },
   },
   form: {
-    width: 320,
+    width: 420,
   },
   tab: {
     fontWeight: 400,
     fontSize: 18,
   },
   greeting: {
-    fontWeight: 500,
+    fontWeight: 'bold',
     textAlign: "center",
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(2),
+  },
+  signin:{
+    fontWeight: 'bold',
+    marginLeft:'10px'
   },
   subGreeting: {
     fontWeight: 500,
