@@ -143,5 +143,15 @@ export default makeStyles(theme => ({
     paddingBottom:"5px",
     marginBottom:'5px',
 
+  },
+  profile1:{
+    margin:'auto',
+    width:'95%',
+    backgroundColor:'#F3F3F3',
+    borderRadius:'6px',
+    display:"flex",
+    flexDirection:'row',
+    alignItems:"center",
+    marginTop:"5px",
   }
 }));

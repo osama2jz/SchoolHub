@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import { Grid } from "@material-ui/core";
 import { TextField, InputBase } from "@material-ui/core";
 import pic1 from './school1.jpg'
@@ -15,6 +15,11 @@ import PageTitle from "../../components/PageTitle/PageTitle";
 import PhotoIcon from '@material-ui/icons/Photo';
 import Widget from "../../components/Widget/Widget";
 
+const comment=[
+  {id:'1', name: 'Ali Khan', content:'Nice pic dear.' },
+  {id:'2',name: 'John Snow', content:'Congratulation on your shadi.' },
+  {id:'3',name: 'Another Name', content:'Brother asked a very good questions.' }
+]
 export default function Home() {
   var classes = useStyles();
 
@@ -42,6 +47,12 @@ export default function Home() {
 }
 function Post(){
   var classes = useStyles();
+  
+  const searchInput = useRef(null)
+  function handleFocus(){
+    searchInput.current.focus()
+  }
+
   return(
     <Grid item md={8}>
           <Widget disableWidgetMenu>
@@ -62,13 +73,23 @@ function Post(){
             </div>
             <div class={classes.likeComm}>
               <div class={classes.like} ><ThumbUpAltIcon fontSize='medium'/><text style={{fontSize:'16px'}}>Like</text></div>
-              <div class={classes.comm}><CommentIcon fontSize='medium' /><text style={{fontSize:'16px'}}>Comment</text></div>
+              <div onClick={handleFocus} class={classes.comm}><CommentIcon fontSize='medium' /><text style={{fontSize:'16px'}}>Comment</text></div>
             </div>
             <div class={classes.commentbox}>
-            <InputBase className={classes.comment} placeholder='Leave a comment'></InputBase>
+            <InputBase className={classes.comment} inputRef={searchInput} placeholder='Leave a comment'></InputBase>
             <SendIcon class={classes.commButton} />
             </div>
-            
+            <div>
+              {comment.map(function(item){return(
+                <div className={classes.profile1}>
+                <AccountCircleIcon style={{fontSize:'40'}}/>
+                <div className={classes.nameanddate}>
+                <text className={classes.name}>{item.name}</text>
+                <text className={classes.time}>{item.content}</text>
+                </div>
+                </div>
+              )})}
+            </div>
           </div>
           
           </Widget>

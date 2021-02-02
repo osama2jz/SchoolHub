@@ -12,7 +12,7 @@ import Notification from "../../../components/Notification/Notification";
 import UserAvatar from "../../../components/UserAvatar/UserAvatar"; 
 // context
 import {useLayoutState,useLayoutDispatch,toggleSidebar,} from "../../../context/LayoutContext";
-import { useUserDispatch, signOut } from "../../../context/UserContext";
+import {useUserDispatch, signOut, toLogin, admin } from "../../../context/UserContext";
 
 const messages = [
   {id: 0,variant: "warning",name: "Jane Hew",message: "Hey! How is it going?",time: "9:32"},
@@ -51,10 +51,10 @@ export default function Header(props) {
         <Link to="/signup" style={{ color: 'white', textDecoration: "none" }}>
           {"Signup"}
         </Link>
-         <Link to="/login"  style={{ color: 'white' }}>
+         <Link   style={{ color: 'white' }}>
           Signin
         </Link> 
-        <Button to='/login'  >frr</Button>  
+        <Link onClick={()=>admin( props.history)}>hi</Link> 
       </Toolbar>
       
     </AppBar>

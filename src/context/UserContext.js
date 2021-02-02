@@ -45,7 +45,7 @@ function useUserDispatch() {
   return context;
 }
 
-export { UserProvider, useUserState, useUserDispatch, loginUser, signOut };
+export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, admin, toLogin };
 
 // ###########################################################
 
@@ -72,5 +72,11 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
 function signOut(dispatch, history) {
   localStorage.removeItem("id_token");
   dispatch({ type: "SIGN_OUT_SUCCESS" });
+  history.push("/login");
+}
+function admin( history) {
+  history.push("/admin");
+}
+function toLogin(history) {
   history.push("/login");
 }

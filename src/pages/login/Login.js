@@ -8,6 +8,7 @@ import {
   Tab,
   TextField,
   Fade,
+  Link
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
@@ -22,7 +23,7 @@ import logo from "../../logo.png";
 import google from "../../images/google.svg";
 
 // context
-import { useUserDispatch, loginUser } from "../../context/UserContext";
+import { useUserDispatch, loginUser, admin } from "../../context/UserContext";
 import Widget from "../../components/Widget/Widget";
 function Login(props) {
   var classes = useStyles();
@@ -139,6 +140,7 @@ function Login(props) {
                   >
                     Login
                   </Button>
+                  
                 )}
                 <Button
                   size="large"
@@ -147,6 +149,7 @@ function Login(props) {
                   Forget Password
                 </Button>
               </div>
+              <Link onClick={()=>admin( props.history)}>hi</Link>
             </React.Fragment>
           )}
           {activeTabId === 1 && (

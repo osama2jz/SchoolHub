@@ -121,7 +121,7 @@ export default function Maps() {
                 <SearchIcon fontSize='large' class={classes.icon}/>
               </div>
               
-              <div >
+              <div>
                 {Schools.map(function(item){return (
                 <div class={classes.result}>
                   <text>{item.name}</text>

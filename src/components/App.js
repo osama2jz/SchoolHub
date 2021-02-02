@@ -6,9 +6,11 @@ import Layout from "./Layout";
 
 // pages
 import Error from "../pages/error";
+import Admin from '../pages/Admin/Admin'
 import Login from "../pages/login";
 import Signin from '../pages/profiling/signin/signinNew'
 import Landing from './../pages/landing/Landing'
+import AdminAdding from '../pages/Admin/AdminAdding'
 
 // context
 import { useUserState } from "../context/UserContext";
@@ -26,6 +28,7 @@ export default function App() {
         {/* <Route exact path="/" render={() => <Redirect to="/app/home" />} /> */}
         {/* <Route exact path="/app" render={() => <Redirect to="/app/home" />}/> */}
         <Route exact path="/" component={Login} />
+        <Route exact path="/admin" component={AdminAdding} />
         <PrivateRoute path="/app" component={Layout} />
         <PublicRoute path="/login" component={Login} />
         <Route component={Error} />
