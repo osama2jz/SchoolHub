@@ -1,10 +1,13 @@
-import React from 'react';
+import React ,{ Fragment, useRef, useMemo, useCallback  }from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Widget from "../../components/Widget/Widget";
 import { Checkbox, FormControlLabel, Radio, RadioGroup, Button, Stepper, Step, StepLabel, TextField, Typography } from '@material-ui/core';
-import { Delete, VideoCall, Photo } from '@material-ui/icons';
+import { Delete, VideoCall, Photo, Room } from '@material-ui/icons';
 import Fee from './fee'
-
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet'
+import { toLogin } from "../../context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -63,6 +66,10 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
         //   alignItems:'center'
     },
+    mapContainer: {
+        height: "65vh",
+        width:'78vh',
+      },
 }));
 
 function getSteps() {
@@ -77,7 +84,9 @@ const videos = [
     { name: "video", icon: <Delete /> },
 
 ]
+
 function GetStepContent(stepIndex) {
+    const position = [30.3753, 69.3451]
     const classes = useStyles();
     const [value, setValue] = React.useState('Co-Education');
     const [value3, setValue3] = React.useState('Matric/Fsc');
@@ -170,15 +179,39 @@ function GetStepContent(stepIndex) {
                 </Widget>
             </div>;
         case 3:
-            return 'Unknown stepIndex';
+            return <div className={classes.box}>
+                <text style={{fontSize:'10px'}}>Double click to go to your current location. <br/>
+                    Click on map to mark exact location of your school.</text>
+                <Widget disableWidgetMenu>
+                    <MapContainer center={position}
+                        zoom={6}
+                        className={classes.mapContainer}
+                    >
+                        <TileLayer
+                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        {/* for my loction */}
+                        <LocationMarker />
+                        {/* For selected location  */}
+                        <AddMarkerToClick />
+                    </MapContainer>
+                </Widget>
+            </div>;
         case 4:
-            return 'Finished ';
+            return <div className={classes.box}>
+            <Widget title='Request submitted' disableWidgetMenu>
+                <text>Process for adding your school has been completed.</text>
+                <br/>
+                <text>Your request has been submitted and will be processed soon.</text>
+            </Widget>
+        </div>;;
         default:
             return 'Unknown stepIndex';
     }
 }
 
-export default function AdminAdding() {
+export default function AdminAdding(props) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const steps = getSteps();
@@ -207,8 +240,10 @@ export default function AdminAdding() {
             <div>
                 {activeStep === steps.length ? (
                     <div>
-                        <Typography className={classes.instructions}>All steps completed</Typography>
-                        <Button onClick={handleReset}>Reset</Button>
+                        <Widget>
+                            <Typography className={classes.instructions}>All steps completed</Typography>
+                            <Button onClick={handleReset}>Reset</Button>
+                        </Widget>
                     </div>
                 ) : (
                         <div>
@@ -218,13 +253,15 @@ export default function AdminAdding() {
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                                 <Button
                                     variant="contained" color="inherit"
-                                    disabled={activeStep === 0}
+                                    disabled={activeStep === 0 || activeStep===4}
                                     onClick={handleBack}
                                     className={classes.backButton}
                                 >
                                     Back
                                 </Button>
-                                <Button variant="contained" color="inherit" onClick={handleNext}>
+                                <Button variant="contained" color="inherit" 
+                                    onClick={activeStep===4 ? () => toLogin(props.history): handleNext}
+                                    >
                                     {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                                 </Button>
                             </div>
@@ -234,3 +271,47 @@ export default function AdminAdding() {
         </div>
     );
 }
+function LocationMarker() {
+    const [position, setPosition] = React.useState(null)
+    const map = useMapEvents({
+      dblclick() {
+        map.locate()
+      },
+      locationfound(e) {
+        setPosition(e.latlng)
+        map.flyTo(e.latlng, 15)
+      },
+    })
+  
+    return position === null ? null : (
+      <Marker position={position} icon={ iconPerson }>
+        <Popup>You are here</Popup>
+      </Marker>
+    )
+  }
+  const iconPerson = new L.Icon({
+    iconUrl: require('./marker.png'),
+    iconSize: [30, 30],
+    
+});
+function AddMarkerToClick() {
+
+    const [markers, setMarkers] = React.useState([]);
+  
+    const map = useMapEvents({
+      click(e) {
+        const newMarker = e.latlng
+        setMarkers([newMarker]);
+      },
+    })
+  
+    return (
+      <>
+        {markers.map(marker => 
+          <Marker position={marker} icon={ iconPerson }>
+            <Popup>Latitude: {marker.lat}<br/> Longitutde: {marker.lng}</Popup>
+          </Marker>
+        )}
+      </>
+    )
+  }
