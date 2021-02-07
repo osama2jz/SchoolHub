@@ -289,7 +289,7 @@ function LocationMarker() {
       </Marker>
     )
   }
-  const iconPerson = new L.Icon({
+const iconPerson = new L.Icon({
     iconUrl: require('./marker.png'),
     iconSize: [30, 30],
     
