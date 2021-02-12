@@ -1,13 +1,15 @@
-import React ,{ Fragment, useRef, useMemo, useCallback  }from 'react';
+import React , { useState }from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Widget from "../../components/Widget/Widget";
-import { Checkbox, FormControlLabel, Radio, RadioGroup, Button, Stepper, Step, StepLabel, TextField, Typography } from '@material-ui/core';
-import { Delete, VideoCall, Photo, Room } from '@material-ui/icons';
+import {Tabs, Tab, InputAdornment, Checkbox, FormControlLabel, Radio, RadioGroup, Button, Stepper, Step, StepLabel, TextField, Typography } from '@material-ui/core';
+import { Delete, VideoCall, Photo } from '@material-ui/icons';
 import Fee from './fee'
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet'
 import { toLogin } from "../../context/UserContext";
+import {AccountCircle, Room, PhoneAndroid, AlternateEmail, Code, Facebook } from '@material-ui/icons'
+import {Cancel, AddBox, PhotoSizeSelectActual, PlayArrow, PartyMode } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,13 +25,62 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(1),
     },
     box: {
-        width: "50%",
+        width: "60%",
         margin: 'auto',
+        
     },
     box2: {
         display: 'flex',
         flexDirection: 'row'
 
+    },
+    button: {
+        backgroundColor: '#43425d',
+        color: 'white',
+        width: '100px',
+        float: 'right',
+        marginLeft: '10px'
+    },
+    pics: {
+        display: 'flex',
+        flexDirection: 'row'
+    },
+    pic: {
+        width: '100px',
+        height: '100px',
+        textAlign:'center',
+        justifyContent:'center',
+        '&:hover':{
+            fill:'#9F9F9F'
+        }
+    },
+    video: {
+        width: "700px",
+        height: '300px',
+        textAlign:'center',
+        justifyContent:'center'
+    },
+    AR:{
+        display:"flex",
+        flexDirection:'row',
+        textAlign:'center',
+        alignItems:'center',
+        marginTop:'5px',
+        width:'170px',
+        border: "1px solid black",
+        borderRadius:"8px",
+        padding:'10px',
+        margin:'auto',
+        '&:hover':{
+            color:'white',
+            cursor:'pointer',
+            backgroundColor:'#43425d'
+        }
+    },
+    cancel:{
+        '&:hover':{
+            fill:'#9F9F9F'
+        }
     },
     Checks: {
         display: 'flex',
@@ -68,26 +119,31 @@ const useStyles = makeStyles((theme) => ({
     },
     mapContainer: {
         height: "65vh",
-        width:'78vh',
+        width:'90vh',
       },
 }));
 
 function getSteps() {
     return ['Add General Information', 'Add photos/video', 'Add Fee details', 'Add location', 'Finish'];
 }
-const photos = [
-    { name: "photo1", icon: <Delete /> },
-    { name: "photo2", icon: <Delete /> },
-    { name: "photo3", icon: <Delete /> }
-]
-const videos = [
-    { name: "video", icon: <Delete /> },
 
-]
 
 function GetStepContent(stepIndex) {
     const position = [30.3753, 69.3451]
     const classes = useStyles();
+    const pics = [
+        { id: 0, source: <PhotoSizeSelectActual className={classes.pic} /> },
+        { id: 1, source: <PhotoSizeSelectActual className={classes.pic} /> },
+        { id: 2, source: <PhotoSizeSelectActual className={classes.pic} /> },
+        { id: 3, source: <PhotoSizeSelectActual className={classes.pic} /> },
+        { id: 4, source: <PhotoSizeSelectActual className={classes.pic} /> }
+    ]
+    const video = [
+        { id: 0, source: <PlayArrow className={classes.video} /> },
+    ]
+    var [activeTabId, setActiveTabId] = useState(0);
+    const [video1, setVideo1] = React.useState('true');
+    const [picss, setpicss] = React.useState(5)
     const [value, setValue] = React.useState('Co-Education');
     const [value3, setValue3] = React.useState('Matric/Fsc');
     const handleChange = (event) => {
@@ -100,12 +156,24 @@ function GetStepContent(stepIndex) {
         case 0:
             return <div className={classes.box}>
                 <Widget title='General Information' disableWidgetMenu>
-                    <TextField id="name" placeholder="School Name" fullWidth />
-                    <TextField id="address" placeholder="School Address" fullWidth />
-                    <TextField id="zip" placeholder="Zip code" fullWidth />
-                    <TextField id="email" placeholder="School Email" fullWidth />
-                    <TextField id="contact" placeholder="School Phone Number" fullWidth />
-                    <TextField id="facebook" placeholder="School Facebook Link" fullWidth />
+                <TextField InputProps={{startAdornment: (
+                            <InputAdornment position="start"><AccountCircle /></InputAdornment>
+                          ),}} className={classes.textfield} id="name" placeholder="School Name" fullWidth />
+                <TextField InputProps={{startAdornment: (
+                            <InputAdornment position="start"><Room /></InputAdornment>
+                          ),}}  id="address" placeholder="School Address" fullWidth />
+                <TextField InputProps={{startAdornment: (
+                            <InputAdornment position="start"><Code /></InputAdornment>
+                          ),}}  id="zip" placeholder="Zip code" fullWidth />
+                <TextField InputProps={{startAdornment: (
+                            <InputAdornment position="start"><AlternateEmail /></InputAdornment>
+                          ),}}  id="email" placeholder="School Email" fullWidth />
+                <TextField InputProps={{startAdornment: (
+                            <InputAdornment position="start"><PhoneAndroid /></InputAdornment>
+                          ),}}  id="contact" placeholder="School Phone Number" fullWidth />
+                <TextField InputProps={{startAdornment: (
+                            <InputAdornment position="start"><Facebook /></InputAdornment>
+                          ),}}  id="facebook" placeholder="School Facebook Link" fullWidth />
 
                     <div className={classes.Checks}>
                         <text style={{ fontWeight: 'bold' }}>School type: </text>
@@ -137,39 +205,47 @@ function GetStepContent(stepIndex) {
         case 1:
             return <div className={classes.box}>
                 <Widget title='Photos/Video' disableWidgetMenu>
-                    <div className={classes.postbottom}>
-                        <div className={classes.postbottomL}>
-                            <Photo fontSize='large' className='icon' />
-                            <text>Upload photo</text>
-                        </div>
-                        <div className={classes.postbottomL}>
-                            <VideoCall fontSize='large' className='icon' />
-                            <text>Upload Video</text>
-                        </div>
-                    </div>
-                    <div className={classes.postbottom}>
-                        <div>
-                            {photos.map(function (item) {
-                                return (
-                                    <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                        <div style={{ width: '100px' }}><text >{item.name}</text></div>
-                                        {item.icon}
+                <Tabs
+                            value={activeTabId}
+                            onChange={(e, id) => setActiveTabId(id)}
+                            indicatorColor="primary"
+                            textColor="primary"
+                            centered
+                        >
+                            <Tab label="Photos" classes={{ root: classes.tab }} />
+                            <Tab label="Videos" classes={{ root: classes.tab }} />
+                        </Tabs>
+                        {activeTabId === 0 && (
+                            <React.Fragment >
+                                <div className={classes.pics}>
+                                    <AddBox className={classes.pic} />
+                                    <div className={classes.pics}>
+                                        {pics.map(function (item) {
+                                            return (
+                                                <div className={classes.pic}>
+                                                    {item.source}
+                                                    <Cancel className={classes.cancel}/>
+                                                </div>
+                                            )
+                                        })}
                                     </div>
-
-                                )
-                            })}
-                        </div>
-
-                        {videos.map(function (item) {
-                            return (
-                                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                    <div style={{ width: '100px' }}><text >{item.name}</text></div>
-                                    {item.icon}
                                 </div>
+                            </React.Fragment>
+                        )}
+                        {activeTabId === 1 && (
+                            <React.Fragment>
+                                <div className={classes.AR}>
+                                <PartyMode/>
+                                <text>Request AR model</text>
+                                </div>
+                                
+                                <div className={classes.pics}>
+                                    {video1 == 'true' ? <div className={classes.video}><PlayArrow className={classes.video} /> <Cancel className={classes.cancel}/></div> : <AddBox className={classes.pic} />}
 
-                            )
-                        })}
-                    </div>
+                                </div>
+                            </React.Fragment>
+                        )}
+                    <br/>
                 </Widget>
             </div>;;
         case 2:
@@ -252,14 +328,14 @@ export default function AdminAdding(props) {
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                                 <Button
-                                    variant="contained" color="inherit"
+                                    variant="contained" 
                                     disabled={activeStep === 0 || activeStep===4}
                                     onClick={handleBack}
-                                    className={classes.backButton}
+                                    className={classes.button}
                                 >
                                     Back
                                 </Button>
-                                <Button variant="contained" color="inherit" 
+                                <Button variant="contained"  className={classes.button}
                                     onClick={activeStep===4 ? () => toLogin(props.history): handleNext}
                                     >
                                     {activeStep === steps.length - 1 ? 'Finish' : 'Next'}

@@ -6,7 +6,7 @@ import Layout from "./Layout";
 
 // pages
 import Error from "../pages/error";
-import Admin from '../pages/Admin/Admin'
+import Admin from '../pages/Admin/DashboardTabs/Edit info'
 import Login from "../pages/login";
 import Signin from '../pages/profiling/signin/signinNew'
 import SchoolProfile from '../pages/Admin/SchoolView/SchoolProfile'
@@ -14,13 +14,14 @@ import SchoolFee from '../pages/Admin/SchoolView/SchoolFee'
 import School from '../pages/Admin/SchoolView/School'
 import Landing from './../pages/landing/Landing'
 import AdminAdding from '../pages/Admin/AdminAdding'
-
+import AdminDashboard from '../pages/Admin/AdminDashboard'
 // context
 import { useUserState } from "../context/UserContext";
 import Home from "../pages/home/Home";
 import Schoolprofile from "../pages/Admin/SchoolView/SchoolFee";
-
-
+import EditInfo from '../pages/Admin/DashboardTabs/Edit info'
+import EditPhotos from '../pages/Admin/DashboardTabs/EditPhotos'
+import EditFee from '../pages/Admin/DashboardTabs/EditFee'
 export default function App() {
   // global
   var { isAuthenticated } = useUserState();
@@ -32,7 +33,14 @@ export default function App() {
         {/* <Route exact path="/" render={() => <Redirect to="/app/home" />} /> */}
         {/* <Route exact path="/app" render={() => <Redirect to="/app/home" />}/> */}
         <Route exact path="/" component={Login} />
-        <Route exact path="/admin" component={School} />
+        <Route exact path="/general" component={EditInfo} />
+        <Route exact path="/photos" component={EditPhotos} />
+        <Route exact path="/fee" component={EditFee} />
+        <Route exact path="/acad" component={EditInfo} />
+        <Route exact path="/live" component={EditInfo} />
+        <Route exact path="/requests" component={EditInfo} />
+        <Route exact path="/reviews" component={EditInfo} />
+        <Route exact path="/admin" component={AdminDashboard} />
         <PrivateRoute path="/app" component={Layout} />
         <PublicRoute path="/login" component={Login} />
         <Route component={Error} />

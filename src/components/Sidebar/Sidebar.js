@@ -47,7 +47,7 @@ function Sidebar({ location }) {
             isSidebarOpened={isSidebarOpened}
             {...link}
           />
-        ))}
+        ))} 
       </List>
     </Drawer>
   );

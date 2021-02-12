@@ -52,15 +52,15 @@ export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, admin,
 function loginUser(dispatch, login, password, history, setIsLoading, setError) {
   setError(false);
   setIsLoading(true);
-
+  
   if (!!login && !!password) {
     setTimeout(() => {
       localStorage.setItem('id_token', 1)
       setError(null)
       setIsLoading(false)
       dispatch({ type: 'LOGIN_SUCCESS' })
-
       history.push('/app/home')
+      console.log(history.location);
     }, 2000);
   } else {
     dispatch({ type: "LOGIN_FAILURE" });
@@ -76,6 +76,7 @@ function signOut(dispatch, history) {
 }
 function admin( history) {
   history.push("/admin");
+  console.log('hiashais');
 }
 function toLogin(history) {
   history.push("/login");

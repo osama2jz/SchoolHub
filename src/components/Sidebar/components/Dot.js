@@ -9,7 +9,8 @@ var useStyles = makeStyles(theme => ({
     height: 8,
     backgroundColor: theme.palette.text.hint,
     borderRadius: "50%",
-    transition: theme.transitions.create("background-color"),
+    transition: theme
+    .transitions.create("background-color"),
   },
   dotSmall: {
     width: 5,
