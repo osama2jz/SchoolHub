@@ -74,7 +74,7 @@ function EditInfo(props) {
               <React.Fragment>
                 <TextField InputProps={{startAdornment: (
                             <InputAdornment position="start"><AccountCircle /></InputAdornment>
-                          ),}} className={classes.textfield} id="name" placeholder="School Name" fullWidth />
+                          ),}}  id="name" placeholder="School Name" fullWidth />
                 <TextField InputProps={{startAdornment: (
                             <InputAdornment position="start"><Room /></InputAdornment>
                           ),}}  id="address" placeholder="School Address" fullWidth />
