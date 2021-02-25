@@ -45,7 +45,7 @@ function useUserDispatch() {
   return context;
 }
 
-export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, admin, toLogin };
+export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, admin, toLogin, toProfile, home };
 
 // ###########################################################
 
@@ -80,4 +80,10 @@ function admin( history) {
 }
 function toLogin(history) {
   history.push("/login");
+}
+function toProfile(history) {
+  history.push("/profile");
+}
+function home(history) {
+  history.push("/app/home");
 }

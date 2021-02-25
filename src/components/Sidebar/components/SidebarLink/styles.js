@@ -25,10 +25,10 @@ export default makeStyles(theme => ({
     width: 24,
     display: "flex",
     justifyContent: "center",
-    color: '#a20a0a',
+    color: '#43425d',
   },
   linkIconActive: {
-    color: '#a20a0a',
+    color: "black",
 
   },
   linkText: {
@@ -38,6 +38,7 @@ export default makeStyles(theme => ({
     fontSize: 16,
   },
   linkTextActive: {
+    fontWeight:'bold',
     color: theme.palette.text.primary,
   },
   linkTextHidden: {

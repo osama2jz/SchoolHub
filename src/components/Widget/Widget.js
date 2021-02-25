@@ -79,16 +79,7 @@ export default function Widget({
         disableAutoFocusItem
       >
         <MenuItem>
-          <Typography>Edit</Typography>
-        </MenuItem>
-        <MenuItem>
-          <Typography>Copy</Typography>
-        </MenuItem>
-        <MenuItem>
           <Typography>Delete</Typography>
-        </MenuItem>
-        <MenuItem>
-          <Typography>Print</Typography>
         </MenuItem>
       </Menu>
     </div>

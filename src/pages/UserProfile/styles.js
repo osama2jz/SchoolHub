@@ -9,11 +9,28 @@ export default makeStyles(theme => ({
     paddingBottom: theme.spacing(4),
     marginTop: theme.spacing(1),
   },
+  main:{
+    width:'95vw',
+    display:'flex',
+    flexDirection:'row',
+    height:'88vh',
+  },
+  info:{
+    width:'350px',
+    textAlign:'center',
+    position:'fixed',
+    height:'88vh'
+  },
   text: {
     marginBottom: theme.spacing(2),
   },
   textfield:{
     width:'100%',
+  },
+  dp:{
+    height:'250px',
+    width:'250px',
+    borderRadius:'50%'
   },
   postbottom:{
     display:"flex",
@@ -125,8 +142,8 @@ export default makeStyles(theme => ({
     }
   },
   pic:{
-      maxWidth:"700px",
-      maxHeight:"700px",
+      maxWidth:"645px",
+      maxHeight:"645px",
   },
   profile:{
     display:"flex",

@@ -133,9 +133,7 @@ export default makeStyles(theme => ({
   profileMenuIcon: {
     marginRight: theme.spacing(2),
     color: theme.palette.text.hint,
-    '&:hover': {
-      color: theme.palette.primary.main,
-    }
+    
   },
   profileMenuLink: {
     fontSize: 16,

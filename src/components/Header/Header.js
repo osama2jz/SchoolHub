@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {AppBar,Toolbar,IconButton,InputBase,Menu,MenuItem,Fab,Link} from "@material-ui/core";
-import {MailOutline as MailIcon,NotificationsNone as NotificationsIcon,Person as AccountIcon,Search as SearchIcon,Send as SendIcon} from "@material-ui/icons";
+import {AccountCircle, MailOutline as MailIcon,NotificationsNone as NotificationsIcon,Person as AccountIcon,Search as SearchIcon,Send as SendIcon} from "@material-ui/icons";
 import classNames from "classnames";
 import Logo from './logo.png';
 // styles
@@ -11,7 +11,7 @@ import Notification from "../Notification/Notification";
 import UserAvatar from "../UserAvatar/UserAvatar"; 
 // context
 import {useLayoutState,useLayoutDispatch,toggleSidebar,} from "../../context/LayoutContext";
-import { useUserDispatch, signOut } from "../../context/UserContext";
+import { useUserDispatch, signOut, toProfile, home } from "../../context/UserContext";
 const messages = [
   {id: 0,variant: "warning",name: "Jane Hew",message: "Hey! How is it going?",time: "9:32"},
   {id: 1,variant: "success",name: "Lloyd Brown",message: "Check out my new Dashboard",time: "9:18",},
@@ -20,6 +20,9 @@ const notifications = [
   { id: 0, color: "warning", message: "Check out this awesome ticket" },
   {id: 1,color: "success",type: "info",message: "What is the best way to get ..."},
 ];
+
+const profile={name:'John Smith', user:'Student', profile:'Profile', photo:<AccountIcon/>}
+
 
 export default function Header(props) {
   var classes = useStyles();
@@ -38,8 +41,12 @@ export default function Header(props) {
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
       <img style={{marginLeft:'20px', width:"40px", height:'45px'}} src={Logo} />
-        <Typography variant="h5" weight="bold" className={classes.logotype}>
+        <Typography 
+        onClick={() => props.history.push('/app/home')}
+        variant="h5" weight="bold" className={classes.logotype}>
+          
           SCHOOLHUB
+          
         </Typography>
         
         <div className={classes.grow} />
@@ -105,7 +112,7 @@ export default function Header(props) {
           aria-controls="profile-menu"
           onClick={e => setProfileMenu(e.currentTarget)}
         >
-          <AccountIcon classes={{ root: classes.headerIcon }} />
+         <div className={classes.headerICon}> {profile.photo}</div>
         </IconButton>
         <Menu
           id="mail-menu"
@@ -190,16 +197,14 @@ export default function Header(props) {
           disableAutoFocusItem
         >
           <div className={classes.profileMenuUser}>
-            <Typography variant="h4" weight="medium">
-              John Smith
+            <Typography variant="h4" weight="bold">
+              {profile.name}
             </Typography>
             <Typography
-              className={classes.profileMenuLink}
               component="a"
-              color="primary"
-              href="https://flatlogic.com"
+              color="inherit"
             >
-              Flalogic.com
+              {profile.user}
             </Typography>
           </div>
           <MenuItem
@@ -207,6 +212,7 @@ export default function Header(props) {
               classes.profileMenuItem,
               classes.headerMenuItem,
             )}
+            onClick={() => toProfile( props.history)}
           >
             <AccountIcon className={classes.profileMenuIcon} /> Profile
           </MenuItem>

@@ -9,7 +9,7 @@ import StarRatings from 'react-star-ratings';
 import Widget from "../../../components/Widget/Widget";
 import L from 'leaflet';
 import Footer from './Footer'
-import {Button,Typography,Grid} from "@material-ui/core";
+import { Button, Typography, Grid } from "@material-ui/core";
 import Carousel from 'react-grid-carousel'
 
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -44,50 +44,50 @@ const useStyles = makeStyles((theme) => ({
         width: "200px",
         height: '200px'
     },
-    maprev:{
-        justifyContent:'space-between',
-        display:'flex',
-        flexDirection:'row',
-        marginBottom:'10px',
-        marginTop:'10px'
+    maprev: {
+        justifyContent: 'space-between',
+        display: 'flex',
+        flexDirection: 'row',
+        marginBottom: '10px',
+        marginTop: '10px'
     },
-    reviews:{
-        width:'45%',
-        height:'65vh'
+    reviews: {
+        width: '45%',
+        height: '65vh'
     },
-    para:{
-        width:'400px',
-        height:"100px",
-        border:'1px solid rgba(0,0,0,0.2)',
+    para: {
+        width: '400px',
+        height: "100px",
+        border: '1px solid rgba(0,0,0,0.2)',
     },
-    top:{
-        marginLeft:'15px',
-        width:'250px',
-        borderRadius:'5px',
-        height:'250px',
-        '&:hover':{
-          cursor:'pointer',
-         opacity:'0.7'
+    top: {
+        marginLeft: '15px',
+        width: '250px',
+        borderRadius: '5px',
+        height: '250px',
+        '&:hover': {
+            cursor: 'pointer',
+            opacity: '0.7'
         }
-      },
-    review:{
-        borderBottom:'1px solid rgba(0,0,0,0.2)',
-        marginBottom:'10px'
     },
-    leavecomment:{
-        width:'400px',
-        height:'180px'
+    review: {
+        borderBottom: '1px solid rgba(0,0,0,0.2)',
+        marginBottom: '10px'
+    },
+    leavecomment: {
+        width: '400px',
+        height: '180px'
 
     },
-    toptitle:{
-        width:'100%',
-        marginLeft:'15px',
-        marginBottom:'10px',
-        fontSize:'30px',
-        fontWeight:'bold',
-        color:'#696969',
-        alignItems:'center'
-      },
+    toptitle: {
+        width: '100%',
+        marginLeft: '15px',
+        marginBottom: '10px',
+        fontSize: '30px',
+        fontWeight: 'bold',
+        color: '#696969',
+        alignItems: 'center'
+    },
 }));
 const iconPerson = new L.Icon({
     iconUrl: require('./../marker.png'),
@@ -95,20 +95,20 @@ const iconPerson = new L.Icon({
 
 });
 
-const reviews=[
-    {id:'1', name: 'Ali Khan', content:'One of my favourite sohool, very good services and reponse. rating it 5 because it is the best.', rating:5, date:'5 aug 2020' },
-    {id:'2',name: 'John Snow', content:'Congratulation on your shadi.', rating:4.5, date:'5 aug 2020'  },
-    {id:'3',name: 'Another Name', content:'Brother asked a very good questions.', rating:3, date:'5 aug 2020'  },
-    {id:'4', name: 'Ali Khan', content:'One of my favourite sohool, very good services and reponse. rating it 5 because it is the best.', rating:5, date:'5 aug 2020' },
-    {id:'5',name: 'John Snow', content:'Congratulation on your shadi.', rating:4.5, date:'5 aug 2020'  },
-    {id:'6',name: 'Another Name', content:'Brother asked a very good questions.', rating:3, date:'5 aug 2020'  }
-  
+const reviews = [
+    { id: '1', name: 'Ali Khan', content: 'One of my favourite sohool, very good services and reponse. rating it 5 because it is the best.', rating: 5, date: '5 aug 2020' },
+    { id: '2', name: 'John Snow', content: 'Congratulation on your shadi.', rating: 4.5, date: '5 aug 2020' },
+    { id: '3', name: 'Another Name', content: 'Brother asked a very good questions.', rating: 3, date: '5 aug 2020' },
+    { id: '4', name: 'Ali Khan', content: 'One of my favourite sohool, very good services and reponse. rating it 5 because it is the best.', rating: 5, date: '5 aug 2020' },
+    { id: '5', name: 'John Snow', content: 'Congratulation on your shadi.', rating: 4.5, date: '5 aug 2020' },
+    { id: '6', name: 'Another Name', content: 'Brother asked a very good questions.', rating: 3, date: '5 aug 2020' }
+
 ]
 export default function SchoolProfile() {
     const classes = useStyles();
     const position = [30.3753, 69.3451]
     return (
-        <div style={{width:'200vh'}}>
+        <div style={{ width: '200vh' }}>
             <Slider />
             <Widget className={classes.intro} title='About School' disableWidgetMenu>
                 <div className={classes.intro}>
@@ -132,69 +132,69 @@ export default function SchoolProfile() {
                     </div>
                 </div>
             </Widget>
-            
-            
-                <div className={classes.maprev}>
+
+
+            <div className={classes.maprev}>
 
                 <div>
-                <MapContainer center={position}
-                    zoom={6}
-                    className={classes.mapContainer}
-                >
-                    <TileLayer
-                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    <Marker position={position} icon={iconPerson}>
-                        <Popup>
-                            We are located here!
+                    <MapContainer center={position}
+                        zoom={6}
+                        className={classes.mapContainer}
+                    >
+                        <TileLayer
+                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        <Marker position={position} icon={iconPerson}>
+                            <Popup>
+                                We are located here!
                         </Popup>
-                    </Marker>
-                </MapContainer>
+                        </Marker>
+                    </MapContainer>
                 </div>
-                
-                    <div className={classes.reviews}>
-                        <Widget style={{height:'65vh'}} title='Rate our School' disableWidgetMenu>
-                            <div className={classes.leavecomment}>
+
+                <div className={classes.reviews}>
+                    <Widget style={{ height: '65vh' }} title='Rate our School' disableWidgetMenu>
+                        <div className={classes.leavecomment}>
                             <textarea className={classes.para} id="about" placeholder="Leave a review" fullWidth />
-                            <Button style={{float:"right"}} size="large" variant="contained" color="seconadary"> Submit</Button>
-                            </div>
-                            <Typography variant='h3'>Frequently Asked Questions</Typography>
-                            
+                            <Button style={{ float: "right" }} size="large" variant="contained" color="seconadary"> Submit</Button>
+                        </div>
+                        <Typography variant='h3'>Frequently Asked Questions</Typography>
 
-                        </Widget>
-                    </div>
 
+                    </Widget>
                 </div>
-           
-            
-                <Grid style={{ width: "100%",  paddingBottom:'20px' }}>
+
+            </div>
+
+
+            <Grid style={{ width: "100%", paddingBottom: '20px' }}>
                 <div class={classes.toptitle}>
                     <text>User Reviews</text>
                     <StarRatings rating={4} starDimension="18px" starSpacing="3px" starRatedColor="#D10B0B" />
-                    <text style={{fontSize:'14px'}}>({reviews.length} Reviews)</text>
-                 </div>
-                    <Carousel cols={5} rows={1} gap={2} loop autoplay={3000}>
-                        {reviews.map(function (item) {
-                            return (
-                                <Carousel.Item>
-                                    <Grid item xs={3} class={classes.top}>
+                    <text style={{ fontSize: '14px' }}>({reviews.length} Reviews)</text>
+                </div>
+                <Carousel cols={5} rows={1} gap={2} loop autoplay={3000}>
+                    {reviews.map(function (item) {
+                        return (
+                            <Carousel.Item>
+                                <Grid item xs={3} class={classes.top}>
                                     <Widget disableWidgetMenu>
                                         <AccountCircleIcon style={{ fontSize: '40' }} />
                                         <div className={classes.nameanddate}>
                                             <StarRatings rating={item.rating} starDimension="20px" starSpacing="3px" starRatedColor="#D10B0B" />
-                                            <text className={classes.name}><br/>by <b>{item.name}</b> on {item.date}</text>
+                                            <text className={classes.name}><br />by <b>{item.name}</b> on {item.date}</text>
                                         </div>
                                         <text className={classes.time}>{item.content}</text>
                                     </Widget>
-                                    </Grid>
-                                </Carousel.Item>
+                                </Grid>
+                            </Carousel.Item>
 
-                            )
-                        })}
-                    </Carousel>
-          </Grid>
-           
+                        )
+                    })}
+                </Carousel>
+            </Grid>
+
             <div >
                 <Widget disableWidgetMenu>
                     <Footer />

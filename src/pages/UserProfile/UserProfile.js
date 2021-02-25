@@ -1,7 +1,7 @@
 import React, {useRef} from "react";
 import { Grid } from "@material-ui/core";
-import { TextField, InputBase, Button } from "@material-ui/core";
-import pic1 from './school1.jpg'
+import {Typography, TextField, InputBase, Button } from "@material-ui/core";
+import pic1 from '../home/school1.jpg'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CommentIcon from '@material-ui/icons/Comment';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
@@ -11,39 +11,46 @@ import SendIcon from '@material-ui/icons/Send';
 import useStyles from "./styles";
 
 // components
+import DP from './dp.jpg'
 import PageTitle from "../../components/PageTitle/PageTitle";
 import PhotoIcon from '@material-ui/icons/Photo';
 import Widget from "../../components/Widget/Widget";
-
+import Header from '../../components/Header/Header'
 const comment=[
   {id:'1', name: 'Ali Khan', content:'Nice pic dear.' },
   {id:'2',name: 'John Snow', content:'Congratulation on your shadi.' },
   {id:'3',name: 'Another Name', content:'Brother asked a very good questions.' }
 ]
-export default function Home() {
+var name='Muhammad Osama';
+export default function Home(props) {
   var classes = useStyles();
-
+  
   return (
     <>
-      <Grid container spacing={4}>
-        <Grid item md={8}>
-          <Widget title="What's on your mind?" disableWidgetMenu>
-            <TextField className={classes.textfield} placeholder='Post here...'></TextField>
-            <div className={classes.postbottom}>
-                <div className={classes.postbottomL}>
-                <PhotoIcon fontSize='large' className='icon'/>
-                <text>Upload photo</text>
-                </div>
-                <Button size="large" variant="contained" 
-                 className={classes.postButton}>Post</Button>
-            </div>
-          </Widget>
-        </Grid>
-        <Post/>
-        <Post/>
-        <Post/>
-      </Grid>
-    </>
+          <Header history={props.history}/>
+          <br /><br /><br /><br />
+
+          <div className={classes.main}>
+              
+                  <div className={classes.info}>
+                  <Widget disableWidgetMenu>
+                      <img className={classes.dp} src={DP} />
+                      <Typography variant="h5">{name}</Typography>
+                      <Typography >mosama4u@gmail.com</Typography>
+                      </Widget>
+                  </div>
+
+              
+              <div style={{ marginLeft: '28%' }}>
+                  <Grid container spacing={4} >
+                      <Post />
+                      <Post />
+                      <Post />
+                  </Grid>
+              </div>
+
+          </div>
+      </>
   );
 }
 function Post(){
@@ -63,7 +70,7 @@ function Post(){
             <div className={classes.profile}>
                 <AccountCircleIcon style={{fontSize:'50'}}/>
                 <div className={classes.nameanddate}>
-                <text className={classes.name}>Muhammad Usama</text>
+                <text className={classes.name}>{name}</text>
                 <text className={classes.time}>2 hours ago</text>
                 </div>
             </div>

@@ -25,6 +25,7 @@ import EditPhotos from '../pages/Admin/DashboardTabs/EditPhotos'
 import EditFee from '../pages/Admin/DashboardTabs/EditFee'
 import Faculty from '../pages/Admin/DashboardTabs/Faculty'
 import Feedback from '../pages/Admin/DashboardTabs/Feedback'
+import Profile from '../pages/UserProfile/UserProfile'
 export default function App() {
   // global
   var { isAuthenticated } = useUserState();
@@ -43,6 +44,7 @@ export default function App() {
         <Route exact path="/live" component={Live} />
         <Route exact path="/requests" component={Faculty} />
         <Route exact path="/reviews" component={Feedback} />
+        <Route exact path="/profile" component={Profile} />
         <Route exact path="/admin" component={AdminDashboard} />
         <PrivateRoute path="/app" component={Layout} />
         <PublicRoute path="/login" component={Login} />
