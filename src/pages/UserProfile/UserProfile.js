@@ -6,6 +6,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CommentIcon from '@material-ui/icons/Comment';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import SendIcon from '@material-ui/icons/Send';
+import AddAPhoto from '@material-ui/icons/AddAPhoto'
 
 // styles
 import useStyles from "./styles";
@@ -34,7 +35,10 @@ export default function Home(props) {
               
                   <div className={classes.info}>
                   <Widget disableWidgetMenu>
-                      <img className={classes.dp} src={DP} />
+                      <div >
+                            <img className={classes.dp} src={DP} />
+                            <AddAPhoto className={classes.editimage}/>
+                      </div>
                       <Typography variant="h5">{name}</Typography>
                       <Typography >mosama4u@gmail.com</Typography>
                       </Widget>

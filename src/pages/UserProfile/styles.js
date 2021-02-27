@@ -21,6 +21,23 @@ export default makeStyles(theme => ({
     position:'fixed',
     height:'88vh'
   },
+  editimage:{
+    position: "absolute",
+    top: 248,
+    width:'33px',
+    height:'33px',
+    left: 165,
+    padding:'5px',
+    fill:'white',
+    backgroundColor:'rgba(255,255,255,0.2)',
+    borderRadius:'50%',
+    '&:hover':{
+      backgroundColor:'rgba(255,255,255,0.5)',
+      cursor:'pointer',
+      width:'31px',
+    height:'31px',
+    }
+  },
   text: {
     marginBottom: theme.spacing(2),
   },

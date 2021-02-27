@@ -1,4 +1,4 @@
-import React,{ Fragment } from "react";
+import React, { Fragment } from "react";
 import { Grid } from "@material-ui/core";
 import Popup from 'reactjs-popup';
 import 'leaflet/dist/leaflet.css';
@@ -10,20 +10,20 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import { TextField, InputBase } from "@material-ui/core";
+import { TextField,Select, InputBase, MenuItem, DialogContent, Button, Dialog,DialogTitle,DialogActions } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import Widget from "../../components/Widget/Widget";
-import { MapContainer, TileLayer, Marker} from 'react-leaflet'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import useStyles from "./styles";
 
 const customMarker = new L.icon({
   iconUrl: require("../../marker.png"),
   iconSize: [25, 25],
   iconAnchor: [0, 0],
-}); 
+});
 const MyMarkersList = ({ markers }) => {
   const items = markers.map(({ key, ...props }) => (
-      <MyPopupMarker key={key} {...props} />
+    <MyPopupMarker key={key} {...props} />
   ))
   return <Fragment>{items}</Fragment>
 }
@@ -40,17 +40,31 @@ const markers = [
   { key: 'marker3', position: [29.9248291, 70.945715], content: 'My third popup' },
   { key: 'marker3', position: [30.857321, 69.240635], content: 'My third popup' },
 ]
-const Schools=[
-  {id:'1', name: 'Army Public School, Islamabad', location:'I-8 markaz, Islamabad' },
-  {id:'2',name: 'Pak Turk International School, Islamabad', location:'Taramri chowk, Islamabad' },
-  {id:'3',name: 'Grafton School, Islamabad', location:'Taramri chowk, Islamabad' }
+const Schools = [
+  { id: '1', name: 'Army Public School, Islamabad', location: 'I-8 markaz, Islamabad' },
+  { id: '2', name: 'Pak Turk International School, Islamabad', location: 'Taramri chowk, Islamabad' },
+  { id: '3', name: 'Grafton School, Islamabad', location: 'Taramri chowk, Islamabad' }
 ]
- 
+
 
 export default function Maps() {
-  const [value, setValue] = React.useState('Co-Education');
-  const [value2, setValue2] = React.useState('Primary');
-  const [value3, setValue3] = React.useState('Matric/Fsc');
+  const [value, setValue] = React.useState('');
+  const [value2, setValue2] = React.useState('');
+  const [value3, setValue3] = React.useState('');
+  const [dist, setDist] = React.useState('');
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleChangeD = (event) => {
+    setDist(event.target.value);
+  };
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -62,98 +76,119 @@ export default function Maps() {
   };
   var classes = useStyles();
   const position = [30.3753, 69.3451]
-  return(
-      <div>
-          <Grid container spacing={1}>
-            <Grid item md={3}>
-              <Widget title="Search School Here" disableWidgetMenu>
-              <div className={classes.searchfield}>
-                
-                <InputBase  placeholder='Search here...'></InputBase>
-                
-                <Popup 
-                    trigger={<FilterListIcon class={classes.icon}/>} 
-                    position="right center">
-                  <Grid container>
-                    <Grid item md={3} class={classes.popup2} >
-                    <Widget title="Filter School Here" disableWidgetMenu>
-                    <div class={classes.eachF}>
-                          <text style={{fontWeight:'bold'}}>Disatnce: </text>
-                          <InputBase  placeholder='Max' class={classes.feefield}></InputBase>
-                    </div>
-                    <div class={classes.eachF1}>
-                          <text style={{fontWeight:'bold'}}>Fee: </text>
-                          <InputBase  placeholder='Min' class={classes.feefield}></InputBase>
-                          <InputBase  placeholder='Max' class={classes.feefield}></InputBase>
-                    </div>
-                      
+  return (
+    <div>
+      <Grid container spacing={1}>
+        <Grid item md={3}>
+          <Widget title="Search School Here" disableWidgetMenu>
+            <div className={classes.searchfield}>
+
+              <InputBase placeholder='Search here...'></InputBase>
+              <FilterListIcon class={classes.icon} onClick={handleClickOpen}/>
+              <SearchIcon fontSize='large' class={classes.icon} />
+              <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Filters</DialogTitle>
+                <DialogContent>
+                <div class={classes.eachF}>
+                        <text style={{ fontWeight: 'bold' }}>Disatnce: </text>
+                        <FormControl className={classes.formControl}>
+                          <Select
+                            value={dist}
+                            onChange={handleChangeD}
+                            displayEmpty
+                            className={classes.selectEmpty}
+                            inputProps={{ 'aria-label': 'Without label' }}
+                          >
+                            <MenuItem value="">
+                              <em>None</em>
+                            </MenuItem>
+                            <MenuItem value={0.5}>500m</MenuItem>
+                            <MenuItem value={1}>1km</MenuItem>
+                            <MenuItem value={5}>5km</MenuItem>
+                            <MenuItem value={10}>10km</MenuItem>
+                            <MenuItem value={50}>50km</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </div>
                       <div class={classes.eachF1}>
-                          <text style={{fontWeight:'bold'}}>School type: </text>
-                          <RadioGroup style={{dispaly:'flex', flexDirection:'row'}} aria-label="type" name="type" value={value} onChange={handleChange}>
-                          <FormControlLabel value="Co-Education" control={<Radio />} label="Co-Education" />
-                          <FormControlLabel value="Boys" control={<Radio />} label="Boys" />
-                          <FormControlLabel value="Girls" control={<Radio />} label="Girls " />
-                          </RadioGroup>
+                        <text style={{ fontWeight: 'bold' }}>Fee: </text>
+                        <TextField placeholder="Min"  class={classes.feefield}/>
+                        <TextField placeholder="Max"  class={classes.feefield}/>
+                      </div>
+
+                      <div class={classes.eachF1}>
+                        <text style={{ fontWeight: 'bold' }}>School type: </text>
+                        <RadioGroup style={{ dispaly: 'flex', flexDirection: 'row' }} aria-label="type" name="type" value={value} onChange={handleChange}>
+                          <FormControlLabel value="Co-Education" control={<Radio color='inherit'/>} label="Co-Education" />
+                          <FormControlLabel value="Boys" control={<Radio color='inherit'/>} label="Boys" />
+                          <FormControlLabel value="Girls" control={<Radio color='inherit'/>} label="Girls " />
+                        </RadioGroup>
                       </div >
                       <div class={classes.eachF}>
-                          <text style={{fontWeight:'bold'}}>Education level: </text>
-                          <RadioGroup style={{dispaly:'flex', flexDirection:'row'}} aria-label="educationlevel" name="educationlevel" value={value2} onChange={handleChange2}>
-                          <FormControlLabel value="Primary" control={<Radio />} label="Primary" />
-                          <FormControlLabel value="Middle" control={<Radio />} label="Middle" />
-                          <FormControlLabel value="Higher" control={<Radio />} label="Higher " />
-                          </RadioGroup>
+                        <text style={{ fontWeight: 'bold' }}>Education level: </text>
+                        <RadioGroup style={{ dispaly: 'flex', flexDirection: 'row' }} aria-label="educationlevel" name="educationlevel" value={value2} onChange={handleChange2}>
+                          <FormControlLabel value="Primary" control={<Radio color='inherit'/>} label="Primary" />
+                          <FormControlLabel value="Middle" control={<Radio color='inherit'/>} label="Middle" />
+                          <FormControlLabel value="Higher" control={<Radio color='inherit'/>} label="Higher " />
+                        </RadioGroup>
                       </div>
                       <div class={classes.eachF}>
-                          <text style={{fontWeight:'bold'}}>Education type: </text>
-                          <RadioGroup style={{dispaly:'flex', flexDirection:'row'}} aria-label="educationtype" name="educationtype  " value={value3} onChange={handleChange3}>
+                        <text style={{ fontWeight: 'bold' }}>Education type: </text>
+                        <RadioGroup style={{ dispaly: 'flex', flexDirection: 'row' }} aria-label="educationtype" name="educationtype  " value={value3} onChange={handleChange3}>
                           <FormControlLabel value="Matric/Fsc" control={<Radio />} label="Matric/Fsc" />
                           <FormControlLabel value="IGCSE" control={<Radio />} label="IGCSE" />
-                          </RadioGroup>
+                        </RadioGroup>
                       </div>
-                      <div class={classes.buttons}>
-                        <button>Reset</button>
-                        <button>submit</button>
-                      </div>
-                      </Widget>
-                      </Grid>
-                    </Grid>
-                </Popup>
-                <SearchIcon fontSize='large' class={classes.icon}/>
-              </div>
-              
-              <div>
-                {Schools.map(function(item){return (
-                <div class={classes.result}>
-                  <text>{item.name}</text>
-                   <br/> 
-                  <text style={{fontSize:'10px'}}>{item.location}</text>
-                </div>
-                   )})}
-              </div>
-              </Widget>
-            </Grid>
+                      
 
-            <Grid item md={9}>
-            <Widget disableWidgetMenu>
-              <MapContainer center={position}
-                  zoom={6}
-                  className={classes.mapContainer}
-                  >
-                <TileLayer 
-                  attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <MyMarkersList markers={markers} />
-                {/* <Marker position={position}>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose} color="primary">
+                    Reset
+                  </Button>
+                  <Button onClick={handleClose} color="primary">
+                    Submit
+                  </Button>
+                </DialogActions>
+              </Dialog>
+              
+            </div>
+
+            <div>
+              {Schools.map(function (item) {
+                return (
+                  <div class={classes.result}>
+                    <text>{item.name}</text>
+                    <br />
+                    <text style={{ fontSize: '10px' }}>{item.location}</text>
+                  </div>
+                )
+              })}
+            </div>
+          </Widget>
+        </Grid>
+
+        <Grid item md={9}>
+          <Widget disableWidgetMenu>
+            <MapContainer center={position}
+              zoom={6}
+              className={classes.mapContainer}
+            >
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <MyMarkersList markers={markers} />
+              {/* <Marker position={position}>
                   <Popup>
                     You are here
                   </Popup>
                 </Marker> */}
-              </MapContainer>
-              </Widget>
-            </Grid>
+            </MapContainer>
+          </Widget>
+        </Grid>
       </Grid>
-      </div>
-      
+    </div>
+
   );
 }

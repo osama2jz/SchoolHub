@@ -43,17 +43,13 @@ export default makeStyles(theme => ({
   eachF:{
     disply:"flex",
     flexDirection:'row',
-    justifyContent:'space-around',
     width:'100%'
   },
   buttons:{
     float:'right',
   },
   feefield:{
-    textAlign:'center',
-    borderBottom:'1px solid rgba(0,0,0, 0.2)', 
-    width:'20%', 
-    height:"25px",
-    borderRadius:'5px'
+    
+    width:'100px', 
   },
 }));
