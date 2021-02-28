@@ -21,6 +21,16 @@ export default makeStyles(theme => ({
     position:'fixed',
     height:'88vh'
   },
+  editinputs:{
+    border:'1px solid rgba(0,0,0,0.2)',
+    borderRadius:'5%',
+    paddingLeft:'2px'
+  },
+  editfields:{
+    display:'flex',
+    flexDirection:'row',
+    justifyContent:'space-between'
+  },
   editimage:{
     position: "absolute",
     top: 248,
