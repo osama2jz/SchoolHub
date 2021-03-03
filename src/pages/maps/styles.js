@@ -41,7 +41,9 @@ export default makeStyles(theme => ({
     
   },
   eachF:{
-    disply:"flex",
+    alignItems:'center',
+    justifyContent:'space-between',
+    display:"flex",
     flexDirection:'row',
     width:'100%'
   },
@@ -49,7 +51,7 @@ export default makeStyles(theme => ({
     float:'right',
   },
   feefield:{
-    
-    width:'100px', 
+    width:'50%', 
+    marginLeft:'5px'
   },
 }));

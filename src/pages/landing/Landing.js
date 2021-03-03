@@ -4,12 +4,12 @@ import Popup from 'reactjs-popup';
 import StarRatings from 'react-star-ratings';
 import 'leaflet/dist/leaflet.css';
 import Carousel from 'react-grid-carousel'
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker,useMapEvents } from 'react-leaflet'
 import L from 'leaflet';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { TextField, InputBase } from "@material-ui/core";
+import {TextField, Button, InputBase } from "@material-ui/core";
 import Footer from './footer/Footer'
 import Widget from "../../components/Widget/Widget";
 import useStyles from "./styles";
@@ -53,7 +53,7 @@ const top =[
   {pic:Bhs, Name:'Beacon House School', Address:'Johar town, Lahore', Rating:4},
   {pic:Pk, Name:'Pak Turk International School', Address:'Taramri chowk, Islamabad', Rating:4},
 ]
-export default function Landing() {
+export default function Landing(props) {
   const position = [30.3753, 69.3451]
   const [value, setValue] = React.useState('Co-Education');
   const [value2, setValue2] = React.useState('Primary');
@@ -70,7 +70,7 @@ export default function Landing() {
   var classes = useStyles();
   return (
     <div>
-      <Header />
+      <Header history={props.history}/>
       <div><Slider /></div>
       
       <Grid style={{justifyContent:'center', backgroundColor: '#FFFFFF'}} container spacing={4} >
@@ -137,54 +137,55 @@ export default function Landing() {
         </Grid>
 
         {/* Search Schools */}
-        <Grid item md={2}>
+        <Grid item md={3}>
         <Widget  title="Search School" disableWidgetMenu>
             <div class={classes.eachF}>
-              <InputBase class={classes.searchfield} placeholder='Search here...'></InputBase>
+            <TextField placeholder="Search here..." fullWidth/>
             </div>
             {/* <text>Apply Filters:</text> */}
             <div class={classes.eachF}>
               <text style={{ fontWeight: 'bold' }}>Disatnce: </text>
-              <InputBase placeholder='Max' class={classes.feefield}></InputBase>
+              <TextField placeholder="Max Distance (in KM)"/>
             </div>
             <div class={classes.eachF}>
               <text style={{ fontWeight: 'bold' }}>Fee: </text>
-              <InputBase placeholder='Min' class={classes.feefield}></InputBase>
-              <InputBase placeholder='Max' class={classes.feefield}></InputBase>
+              <TextField placeholder="Min (PKR)" className={classes.feefield}/>
+              <TextField placeholder="Max (PKR)" className={classes.feefield}/>
+              
             </div>
 
-            <div class={classes.eachF1}>
+            <div class={classes.eachF}>
               <text style={{ fontWeight: 'bold' }}>School type: </text>
               <RadioGroup style={{ dispaly: 'flex', flexDirection: 'row' }} aria-label="type" name="type" value={value} onChange={handleChange}>
-                <FormControlLabel value="Co-Education" control={<Radio />} label="Co-Education" />
-                <FormControlLabel value="Boys" control={<Radio />} label="Boys" />
-                <FormControlLabel value="Girls" control={<Radio />} label="Girls " />
+                <FormControlLabel value="Co-Education" control={<Radio color='inherit'/>} label="Co-Education" />
+                <FormControlLabel value="Boys" control={<Radio color='inherit'/>} label="Boys" />
+                <FormControlLabel value="Girls" control={<Radio color='inherit'/>} label="Girls " />
               </RadioGroup>
             </div >
             <div class={classes.eachF}>
               <text style={{ fontWeight: 'bold' }}>Education level: </text>
               <RadioGroup style={{ dispaly: 'flex', flexDirection: 'row' }} aria-label="educationlevel" name="educationlevel" value={value2} onChange={handleChange2}>
-                <FormControlLabel value="Primary" control={<Radio />} label="Primary" />
-                <FormControlLabel value="Middle" control={<Radio />} label="Middle" />
-                <FormControlLabel value="Higher" control={<Radio />} label="Higher " />
+                <FormControlLabel value="Primary" control={<Radio color='inherit'/>} label="Primary" />
+                <FormControlLabel value="Middle" control={<Radio color='inherit'/>} label="Middle" />
+                <FormControlLabel value="Higher" control={<Radio color='inherit'/>} label="Higher " />
               </RadioGroup>
             </div>
             <div class={classes.eachF}>
               <text style={{ fontWeight: 'bold' }}>Education type: </text>
               <RadioGroup style={{ dispaly: 'flex', flexDirection: 'row' }} aria-label="educationtype" name="educationtype  " value={value3} onChange={handleChange3}>
-                <FormControlLabel value="Matric/Fsc" control={<Radio />} label="Matric/Fsc" />
-                <FormControlLabel value="IGCSE" control={<Radio />} label="IGCSE" />
+                <FormControlLabel value="Matric/Fsc" control={<Radio color='inherit'/>} label="Matric/Fsc" />
+                <FormControlLabel value="IGCSE" control={<Radio color='inherit'/>} label="IGCSE" />
               </RadioGroup>
             </div>
             <div class={classes.buttons}>
-              <button>Reset</button>
-              <button>submit</button>
+              <Button color="primary">Reset</Button>
+              <Button color="primary">submit</Button>
             </div>
           </Widget>
         </Grid>
 
         {/* Map here */}
-        <Grid item md={9}>
+        <Grid item md={8}>
           <Widget disableWidgetMenu>
             <MapContainer center={position}
               zoom={6}
@@ -194,6 +195,8 @@ export default function Landing() {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
+              {/* for my loction */}
+              <LocationMarker />
               <MyMarkersList markers={markers} />
             </MapContainer>
           </Widget>
@@ -221,3 +224,26 @@ function TopSchool(obj){
   )
 
 }
+function LocationMarker() {
+  const [position, setPosition] = React.useState(null)
+  const map = useMapEvents({
+    dblclick() {
+      map.locate()
+    },
+    locationfound(e) {
+      setPosition(e.latlng)
+      map.flyTo(e.latlng, 15)
+    },
+  })
+
+  return position === null ? null : (
+    <Marker position={position} icon={ iconPerson }>
+      <Popup>You are here</Popup>
+    </Marker>
+  )
+}
+const iconPerson = new L.Icon({
+  iconUrl: require('../../marker.png'),
+  iconSize: [30, 30],
+  
+});

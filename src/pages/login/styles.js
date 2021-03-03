@@ -36,12 +36,10 @@ export default makeStyles(theme => ({
     marginBottom: theme.spacing(4),
   },
   logotypeText: {
-    color:'black',
+    color:'#43425d',
+    fontSize:'90px',
     fontWeight: 300,
-    fontSize: 84,
-    [theme.breakpoints.down("md")]: {
-      fontSize: 48,
-    },
+    fontWeight:'bold',
   },
   formContainer: {
     width: "40%",
@@ -61,36 +59,29 @@ export default makeStyles(theme => ({
     fontWeight: 400,
     fontSize: 18,
   },
+  tabs:{
+    color:'#43425d',
+   },
   greeting: {
     fontWeight: 'bold',
     textAlign: "center",
+    color:'#43425d',
     marginTop: theme.spacing(2),
   },
+  indicator:{
+    backgroundColor:'#43425d',
+    height:'3px'
+   },
   signin:{
     fontWeight: 'bold',
-    marginLeft:'10px'
   },
   subGreeting: {
     fontWeight: 500,
     textAlign: "center",
     marginTop: theme.spacing(2),
   },
-  googleButton: {
-    marginTop: theme.spacing(6),
-    boxShadow: theme.customShadows.widget,
-    backgroundColor: "white",
-    width: "100%",
-    textTransform: "none",
-  },
-  googleButtonCreating: {
-    marginTop: 0,
-  },
-  googleIcon: {
-    width: 30,
-    marginRight: theme.spacing(2),
-  },
   creatingButtonContainer: {
-    marginTop: theme.spacing(2.5),
+    marginTop: theme.spacing(1),
     height: 46,
     display: "flex",
     justifyContent: "center",
@@ -143,6 +134,7 @@ export default makeStyles(theme => ({
     textTransform: "none",
     fontWeight: 400,
     color:"blue",
+    float:'right'
   },
   loginLoader: {
     marginLeft: theme.spacing(4),

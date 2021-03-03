@@ -110,13 +110,13 @@ export default function Maps() {
                           </Select>
                         </FormControl>
                       </div>
-                      <div class={classes.eachF1}>
+                      <div class={classes.eachF}>
                         <text style={{ fontWeight: 'bold' }}>Fee: </text>
-                        <TextField placeholder="Min"  class={classes.feefield}/>
-                        <TextField placeholder="Max"  class={classes.feefield}/>
+                        <TextField placeholder="Min (PKR)" className={classes.feefield}/>
+                        <TextField placeholder="Max (PKR)" className={classes.feefield}/>
                       </div>
 
-                      <div class={classes.eachF1}>
+                      <div class={classes.eachF}>
                         <text style={{ fontWeight: 'bold' }}>School type: </text>
                         <RadioGroup style={{ dispaly: 'flex', flexDirection: 'row' }} aria-label="type" name="type" value={value} onChange={handleChange}>
                           <FormControlLabel value="Co-Education" control={<Radio color='inherit'/>} label="Co-Education" />

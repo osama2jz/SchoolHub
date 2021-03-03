@@ -44,7 +44,10 @@ function Login(props) {
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
         <img src={logo} alt="logo" className={classes.logotypeImage} />
-        <Typography className={classes.logotypeText}>School-Hub</Typography>
+        <Typography  className={classes.logotypeText}>School-Hub</Typography>
+        <Typography variant="h6" >
+                Finding the right school just got easier
+        </Typography>
       </div>
 
       <div className={classes.formContainer}>
@@ -55,6 +58,7 @@ function Login(props) {
             onChange={(e, id) => setActiveTabId(id)}
             indicatorColor="primary"
             textColor="primary"
+            classes={{indicator: classes.indicator, root:classes.tabs}}
             centered
           >
             <Tab label="Login" classes={{ root: classes.tab }} />
@@ -65,13 +69,11 @@ function Login(props) {
               <Typography variant="h2" className={classes.greeting}>
                 Welcome to School-Hub
               </Typography>
-              <Button size="large" className={classes.googleButton}>
-                <img src={google} alt="google" className={classes.googleIcon} />
-                &nbsp;Sign in with Google
-              </Button>
+              
+              
               <div className={classes.formDividerContainer}>
                 <div className={classes.formDivider} />
-                <Typography className={classes.formDividerWord}>or</Typography>
+                <Typography className={classes.formDividerWord}></Typography>
                 <div className={classes.formDivider} />
               </div>
               <Fade in={error}>
@@ -81,10 +83,10 @@ function Login(props) {
               </Fade>
               <text class={classes.signin}>Sign in as:</text>
                 <RadioGroup class={classes.radio}  >
-                  <FormControlLabel value="Admin" control={<Radio />} label="Admin" />
-                  <FormControlLabel value="Teacher" control={<Radio />} label="Teacher" />
-                  <FormControlLabel value="Student" control={<Radio />} label="Student" />
-                  <FormControlLabel value="Parent" control={<Radio />} label="Parent" />
+                  <FormControlLabel value="Admin" control={<Radio color='inherit'/>} label="Admin" />
+                  <FormControlLabel value="Teacher" control={<Radio color='inherit'/>} label="Teacher" />
+                  <FormControlLabel value="Student" control={<Radio color='inherit'/>} label="Student" />
+                  <FormControlLabel value="Parent" control={<Radio color='inherit'/>} label="Parent" />
                 </RadioGroup>
               
               <TextField
@@ -117,10 +119,7 @@ function Login(props) {
                 type="password"
                 fullWidth
               />
-              <div className={classes.formButtons}>
-                {isLoading ? (
-                  <CircularProgress size={26} className={classes.loginLoader} />
-                ) : (
+              
                   <Button
                   onClick={() =>
                     loginUser(
@@ -137,18 +136,18 @@ function Login(props) {
                     }
                     variant="contained"
                     size="large"
+                    fullWidth
                   >
                     Login
                   </Button>
-                  
-                )}
+                
                 <Button
                   size="large"
                   className={classes.forgetButton}
                 >
                   Forget Password
                 </Button>
-              </div>
+              
               <Link onClick={()=>admin( props.history)}>hi</Link>
             </React.Fragment>
           )}
@@ -157,20 +156,18 @@ function Login(props) {
               <Typography variant="h2" className={classes.greeting}>
                 Create your account
               </Typography>
-              {/* <Typography variant="h3" className={classes.subGreeting}>
-                Create your account
-              </Typography> */}
-              <Fade in={error}>
-                <Typography color="secondary" className={classes.errorMessage}>
-                  Something is wrong with your login or password :(
-                </Typography>
-              </Fade>
+              <div className={classes.formDividerContainer}>
+                <div className={classes.formDivider} />
+                <Typography className={classes.formDividerWord}></Typography>
+                <div className={classes.formDivider} />
+              </div>
+              
               <text class={classes.signin}>Sign up as:</text>
                 <RadioGroup class={classes.radio}  >
-                  <FormControlLabel value="Admin" control={<Radio />} label="Admin" />
-                  <FormControlLabel value="Teacher" control={<Radio />} label="Teacher" />
-                  <FormControlLabel value="Student" control={<Radio />} label="Student" />
-                  <FormControlLabel value="Parent" control={<Radio />} label="Parent" />
+                  <FormControlLabel value="Admin" control={<Radio color='inherit'/>} label="Admin" />
+                  <FormControlLabel value="Teacher" control={<Radio color='inherit'/>} label="Teacher" />
+                  <FormControlLabel value="Student" control={<Radio color='inherit'/>} label="Student" />
+                  <FormControlLabel value="Parent" control={<Radio color='inherit'/>} label="Parent" />
                 </RadioGroup>
 
               <TextField
@@ -254,21 +251,7 @@ function Login(props) {
                   </Button>
                 )}
               </div>
-              <div className={classes.formDividerContainer}>
-                <div className={classes.formDivider} />
-                <Typography className={classes.formDividerWord}>or</Typography>
-                <div className={classes.formDivider} />
-              </div>
-              <Button
-                size="large"
-                className={classnames(
-                  classes.googleButton,
-                  classes.googleButtonCreating,
-                )}
-              >
-                <img src={google} alt="google" className={classes.googleIcon} />
-                &nbsp;Sign in with Google
-              </Button>
+              
             </React.Fragment>
           )}
         </div>
