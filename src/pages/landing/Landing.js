@@ -72,7 +72,7 @@ export default function Landing(props) {
     <div>
       <Header history={props.history}/>
       <div><Slider /></div>
-      
+      <br/><br/>
       <Grid style={{justifyContent:'center', backgroundColor: '#FFFFFF'}} container spacing={4} >
         {/* top ranking Shools */}
         

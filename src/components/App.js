@@ -45,7 +45,7 @@ export default function App() {
         <Route exact path="/requests" component={Faculty} />
         <Route exact path="/reviews" component={Feedback} />
         <Route exact path="/profile" component={Profile} />
-        <Route exact path="/admin" component={AdminDashboard} />
+        <Route exact path="/admin" component={School} />
         <PrivateRoute path="/app" component={Layout} />
         <PublicRoute path="/login" component={Login} />
         <Route component={Error} />
