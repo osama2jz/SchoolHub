@@ -40,6 +40,11 @@ export default makeStyles(theme => ({
         backgroundColor:'#767575'
     }
   },
+  commButton:{
+    width:'25px',
+    height:'25px',
+    marginTop:'7px'
+  },
   nameanddate:{
       display:'flex',
       flexDirection:'column'

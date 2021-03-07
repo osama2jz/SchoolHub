@@ -36,7 +36,7 @@ export default function App() {
         {/* <Route exact path="/" component={Landing} /> */}
         {/* <Route exact path="/" render={() => <Redirect to="/app/home" />} /> */}
         {/* <Route exact path="/app" render={() => <Redirect to="/app/home" />}/> */}
-        <Route exact path="/" component={Landing} />
+        <Route exact path="/" component={Login} />
         <Route exact path="/general" component={EditInfo} />
         <Route exact path="/photos" component={EditPhotos} />
         <Route exact path="/fee" component={EditFee} />
