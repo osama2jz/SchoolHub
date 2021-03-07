@@ -24,8 +24,8 @@ const useStyles = makeStyles(theme => ({
     },
     profile1:{
         margin:'auto',
-        width:'95%',
-        backgroundColor:'#F3F3F3',
+        width:'99   %',
+        backgroundColor:'#F7F7F7',
         borderRadius:'6px',
         display:"flex",
         flexDirection:'row',
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
         width:"98%"
     },
     name:{
-      fontWeight:'bold',
+      
       '&:hover':{
           cursor:'pointer',
           color:'#767575'
@@ -108,7 +108,7 @@ export default function Live() {
             <div className={classes.profile}>
                 <AccountCircleIcon style={{fontSize:'50'}}/>
                 <div className={classes.nameanddate}>
-                <text className={classes.name}>{detail.name} is live now.</text>
+                <text className={classes.name}><b>{detail.name}</b> is live now.</text>
                 <text className={classes.time}>{detail.time}</text>
                 </div>
             </div>
@@ -118,17 +118,19 @@ export default function Live() {
         <Grid item md={4}>
             <Widget title='Comments' disableWidgetMenu>
             <div className={classes.comments}>
-            <div>
-              {comment.map(function(item){return(
-                <div className={classes.profile1}>
-                <AccountCircleIcon style={{fontSize:'40'}}/>
-                <div className={classes.nameanddate}>
-                <text className={classes.name}>{item.name}</text>
-                <text className={classes.time}>{item.content}</text>
-                </div>
-                </div>
-              )})}
-            </div>
+                              <div>
+                                  {comment.map(function (item) {
+                                      return (
+                                          <div className={classes.profile1}>
+                                              <AccountCircleIcon style={{ fontSize: '40' }} />
+                                              <div className={classes.nameanddate}>
+                                                  <text className={classes.name}><b>{item.name}</b></text>
+                                                  <text className={classes.time}>{item.content}</text>
+                                              </div>
+                                          </div>
+                                      )
+                                  })}
+                              </div>
             <div class={classes.commentbox}>
             <InputBase className={classes.comment} placeholder='Leave a comment'></InputBase>
             <SendIcon class={classes.commButton} />
