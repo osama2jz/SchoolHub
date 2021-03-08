@@ -11,7 +11,7 @@ import {
   Link
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
-import classnames from "classnames";
+import Logo from './logo.jpg'
 import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
@@ -41,13 +41,14 @@ function Login(props) {
   var [passwordValue, setPasswordValue] = useState("password");
 
   return (
+    <div style={{backgroundImage:`url(${Logo})`}}>
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
-        <img src={logo} alt="logo" className={classes.logotypeImage} />
+        {/* <img src={logo} alt="logo" className={classes.logotypeImage} />
         <Typography  className={classes.logotypeText}>School-Hub</Typography>
         <Typography variant="h6" >
                 Finding the right school just got easier
-        </Typography>
+        </Typography> */}
       </div>
 
       <div className={classes.formContainer}>
@@ -66,8 +67,11 @@ function Login(props) {
           </Tabs>
           {activeTabId === 0 && (
             <React.Fragment>
+              <Typography variant="h6" className={classes.greeting}>
+                Already Registered?
+              </Typography>
               <Typography variant="h2" className={classes.greeting}>
-                Welcome to School-Hub
+                Login Here!
               </Typography>
               
               
@@ -153,8 +157,11 @@ function Login(props) {
           )}
           {activeTabId === 1 && (
             <React.Fragment>
+              <Typography variant="h6" className={classes.greeting}>
+                New to SchoolHub?
+              </Typography>
               <Typography variant="h2" className={classes.greeting}>
-                Create your account
+                Register Here!
               </Typography>
               <div className={classes.formDividerContainer}>
                 <div className={classes.formDivider} />
@@ -259,6 +266,7 @@ function Login(props) {
       </div>
       
     </Grid>
+    </div>
   );
 }
 

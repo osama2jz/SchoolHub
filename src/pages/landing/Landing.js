@@ -13,7 +13,7 @@ import {TextField, Button, InputBase } from "@material-ui/core";
 import Footer from './footer/Footer'
 import Widget from "../../components/Widget/Widget";
 import useStyles from "./styles";
-import Header from "./Header"
+import Header from "../../components/HeaderLanding"
 import Slider from "./Slider"
 import Lgs from './LGS.png'
 import Pk from './PK.png'
@@ -70,7 +70,7 @@ export default function Landing(props) {
   var classes = useStyles();
   return (
     <div>
-      <Header history={props.history}/>
+      {/* <Header history={props.history}/> */}
       <div><Slider /></div>
       <br/><br/>
       <Grid style={{justifyContent:'center', backgroundColor: '#FFFFFF'}} container spacing={4} >

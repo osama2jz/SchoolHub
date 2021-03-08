@@ -17,14 +17,8 @@ export default makeStyles(theme => ({
       cursor:'pointer'
     }
   },
-  signinbutton:{
-    color:'white',
-    '&:hover':{
-      cursor:'pointer'
-    }
-  },
   appBar: {
-    backgroundColor:'#43425D',
+    backgroundColor:'#43425d',
     width: "100vw",
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["margin"], {
@@ -139,9 +133,7 @@ export default makeStyles(theme => ({
   profileMenuIcon: {
     marginRight: theme.spacing(2),
     color: theme.palette.text.hint,
-    '&:hover': {
-      color: theme.palette.primary.main,
-    }
+    
   },
   profileMenuLink: {
     fontSize: 16,

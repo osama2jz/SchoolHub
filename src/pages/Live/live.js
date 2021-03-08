@@ -8,6 +8,7 @@ import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import SendIcon from '@material-ui/icons/Send';
 import ReactPlayer from 'react-player'
 import Iframe from 'react-iframe'
+import ReactHlsPlayer from 'react-hls-player'
 // styles
 
 
@@ -112,7 +113,14 @@ export default function Live() {
                 <text className={classes.time}>{detail.time}</text>
                 </div>
             </div>
-                <ReactPlayer url='https://dist.bambuser.net/player/?resourceUri=https%3A%2F%2Fcdn.bambuser.net%2Fbroadcasts%2F84297594-ed7d-4015-9384-2e070b253cfe%3Fda_signature_method%3DHMAC-SHA256%26da_id%3D9e1b1e83-657d-7c83-b8e7-0b782ac9543a%26da_timestamp%3D1615116481%26da_static%3D1%26da_ttl%3D0%26da_signature%3D5508a766532d32b59e86fdbf5d79aa8b38dece4ae886f589bdfafd5e4830ca99'/>
+            <ReactHlsPlayer
+                url='https://fb.watch/44Gf5qtHvJ/'
+                autoplay={false}
+                controls={true}
+                width={730}
+                height="auto"
+            />
+                {/* <ReactPlayer url='https://dist.bambuser.net/player/?resourceUri=https%3A%2F%2Fcdn.bambuser.net%2Fbroadcasts%2F84297594-ed7d-4015-9384-2e070b253cfe%3Fda_signature_method%3DHMAC-SHA256%26da_id%3D9e1b1e83-657d-7c83-b8e7-0b782ac9543a%26da_timestamp%3D1615116481%26da_static%3D1%26da_ttl%3D0%26da_signature%3D5508a766532d32b59e86fdbf5d79aa8b38dece4ae886f589bdfafd5e4830ca99'/> */}
             </Widget>
         </Grid>
         <Grid item md={4}>

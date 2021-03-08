@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/styles";
-
+import Logo from './logo.jpg'
 export default makeStyles(theme => ({
   container: {
     height: "100vh",
@@ -10,6 +10,9 @@ export default makeStyles(theme => ({
     position: "absolute",
     top: 0,
     left: 0,
+    backgroundImage:`url(${Logo})`,
+    backgroundRepeat:'no-repeat'
+
   },
   logotypeContainer: {
    
