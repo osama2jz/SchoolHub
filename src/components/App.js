@@ -26,6 +26,8 @@ import EditFee from '../pages/Admin/DashboardTabs/EditFee'
 import Faculty from '../pages/Admin/DashboardTabs/Faculty'
 import Feedback from '../pages/Admin/DashboardTabs/Feedback'
 import Profile from '../pages/UserProfile/UserProfile'
+import SuperAdmin from './LayoutSuperAdmin'
+import Dashboard from '../pages/SuperAdmin/Dashboard'
 export default function App() {
   // global
   var { isAuthenticated } = useUserState();
@@ -36,7 +38,7 @@ export default function App() {
         {/* <Route exact path="/" component={Landing} /> */}
         {/* <Route exact path="/" render={() => <Redirect to="/app/home" />} /> */}
         {/* <Route exact path="/app" render={() => <Redirect to="/app/home" />}/> */}
-        <Route exact path="/" component={Landing} />
+        <Route exact path="/" component={Login } />
         <Route exact path="/general" component={EditInfo} />
         <Route exact path="/photos" component={EditPhotos} />
         <Route exact path="/fee" component={EditFee} />
@@ -45,10 +47,10 @@ export default function App() {
         <Route exact path="/requests" component={Faculty} />
         <Route exact path="/reviews" component={Feedback} />
         <Route exact path="/profile" component={Profile} />
-        <Route exact path="/admin" component={School} />
+        <Route path="/admin" component={SuperAdmin} />
         <PrivateRoute path="/app" component={Layout} />
         <PublicRoute path="/login" component={Login} />
-        <Route component={Error} />
+        
       </Switch>
     </HashRouter>
   );

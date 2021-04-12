@@ -75,7 +75,7 @@ function signOut(dispatch, history) {
   history.push("/login");
 }
 function admin( history) {
-  history.push("/admin");
+  history.push("/admin/dashboard");
 }
 function toLogin(history) {
   history.push("/login");

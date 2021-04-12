@@ -11,7 +11,7 @@ export default function Header(props){
     <AppBar position='fixed' className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
       <img style={{marginLeft:'20px', width:"40px", height:'45px'}} src={Logo} />
-       <Typography>SCHOOLHUB</Typography>
+       <Typography onClick={()=>toLogin(props.history)}>SCHOOLHUB</Typography>
        
        </Toolbar>
     </AppBar>

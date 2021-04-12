@@ -7,15 +7,14 @@ import {mdiFacebook as FacebookIcon,mdiTwitter as TwitterIcon,mdiGithub as Githu
 // styles
 import useStyles from "./styles";
 // components
-import Header from "../Header";
-import Sidebar from "../Sidebar";
+import Header from "../HeaderSuperAdmin/Header";
+import Sidebar from "../SidebarSuperAdmin/Sidebar";
 // pages
-import Dashboard from "../../pages/dashboard";
-import Home from "../../pages/home/Home";
-import Live from "../../pages/Live/live";
-import Maps from "../../pages/maps";
-import Charts from "../../pages/charts";
-import Signin from '../../pages/profiling/signin/signinNew'
+import Dashboard from '../../pages/SuperAdmin/Dashboard';
+import Live from '../../pages/SuperAdmin/LiveStream';
+import Ar from '../../pages/SuperAdmin/AR';
+import Schools from '../../pages/SuperAdmin/Schools';
+import Reviews from '../../pages/SuperAdmin/Reviews'
 import Footer from '../Footer/footer'
 function Layout(props) {
   var classes = useStyles();
@@ -29,16 +28,11 @@ function Layout(props) {
           >
             <div className={classes.fakeToolbar} />
             <Switch>
-              <Route path="/app/home" component={Home} />
-              <Route path="/app/typography" component={Dashboard} />
-              <Route path="/app/map" component={Maps} />
-              <Route path="/app/live" component={Live} />
-              <Route
-                exact
-                path="/app/ui"
-                render={() => <Redirect to="/app/ui/icons" />}
-              />
-              <Route path="/app/charts" component={Charts} />
+              <Route path="/admin/dashboard" component={Dashboard} />
+              <Route path="/admin/schools" component={Schools} />
+              <Route path="/admin/ar" component={Ar} />
+              <Route path="/admin/live" component={Live} />
+              <Route path="/admin/reviews" component={Reviews} />
             </Switch>
             <Footer/>
           </div>

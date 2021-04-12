@@ -6,6 +6,8 @@ import 'leaflet/dist/leaflet.css';
 import Carousel from 'react-grid-carousel'
 import { MapContainer, TileLayer, Marker,useMapEvents } from 'react-leaflet'
 import L from 'leaflet';
+import { toLogin } from "../../context/UserContext";
+import { Badge, Typography } from ".././../components/Wrappers/Wrappers";
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -70,9 +72,10 @@ export default function Landing(props) {
   var classes = useStyles();
   return (
     <div>
-      {/* <Header history={props.history}/> */}
+       <Header history={props.history}/>
       <div><Slider /></div>
       <br/><br/>
+      <Typography onClick={()=>toLogin(props.history)}>SCHOOLHUB</Typography>
       <Grid style={{justifyContent:'center', backgroundColor: '#FFFFFF'}} container spacing={4} >
         {/* top ranking Shools */}
         
