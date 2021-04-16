@@ -10,7 +10,9 @@ const useStyles = makeStyles((theme) => ({
     },
     title:{
       textAlign:'center',
-      marginBottom:'30px'
+      marginBottom:'30px',
+      fontWeight:'bold',
+      fontSize:'30px'
     },
     tab:{
       display:'flex',
