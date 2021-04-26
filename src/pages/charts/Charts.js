@@ -7,9 +7,7 @@ import { BarChart, Bar, CartesianGrid, Legend, Line, LineChart, Pie, PieChart, R
 
 // components
 import Widget from "../../components/Widget/Widget";
-import ApexLineChart from "./components/ApexLineChart";
-import ApexHeatmap from "./components/ApexHeatmap";
-import PageTitle from "../../components/PageTitle/PageTitle";
+
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -94,7 +92,7 @@ export default function Charts(props) {
   return (
     <>
       <Grid>
-        <Widget disableWidgetMenu>
+        <Widget title="Schools Comparision" disableWidgetMenu>
           <Typography >Comparing Schools makes it easier to choose a school. Add schools below to
          compare them using multiple factors.</Typography>
           <div className={classes.search}>
