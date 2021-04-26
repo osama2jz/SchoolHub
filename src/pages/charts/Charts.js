@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Button, Grid } from "@material-ui/core";
+import { Typography, Button, Grid, InputBase } from "@material-ui/core";
 import { useTheme } from "@material-ui/styles";
-import {CartesianGrid,Legend,Line,LineChart,Pie,PieChart,ResponsiveContainer,Sector,Tooltip,XAxis,YAxis,} from "recharts";
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+
+import { BarChart, Bar, CartesianGrid, Legend, Line, LineChart, Pie, PieChart, ResponsiveContainer, Sector, Tooltip, XAxis, YAxis, } from "recharts";
 
 // components
 import Widget from "../../components/Widget/Widget";
@@ -9,95 +11,149 @@ import ApexLineChart from "./components/ApexLineChart";
 import ApexHeatmap from "./components/ApexHeatmap";
 import PageTitle from "../../components/PageTitle/PageTitle";
 
-const lineChartData = [
-  {name: "Page A",uv: 4000,pv: 2400,amt: 2400,},
-  {name: "Page B",uv: 3000,pv: 1398,amt: 2210,},
-  {name: "Page C",uv: 2000,pv: 9800,amt: 2290,},
-  {name: "Page D",uv: 2780,pv: 3908,amt: 2000,},
-  {name: "Page E",uv: 1890,pv: 4800,amt: 2181,},
-  {name: "Page F",uv: 2390,pv: 3800,amt: 2500,},
-  {name: "Page G",uv: 3490,pv: 4300,amt: 2100,},
+const useStyles = makeStyles((theme) => ({
+  main: {
+    marginLeft: '15%',
+  },
+  Button: {
+    color: "white",
+    fontSize: '15px',
+    marginLeft: '5px',
+    backgroundColor: "#43425d",
+    padding: '2px 10px 2px 10px',
+    borderRadius: '5px',
+    '&:hover': {
+      cursor: 'pointer',
+    }
+  },
+  addschool: {
+    width: '600px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: "8px",
+    marginLeft: '6px',
+    textAlign: 'center',
+    backgroundColor: 'rgba(0,0,0,0.1)'
+  },
+  input: {
+    border: '1px solid rgba(0, 0, 0, 0.3)',
+    borderRadius: '5px',
+    width: '500px',
+  },
+  dp: {
+    width: '190px',
+    height: '190px'
+  },
+  remove: {
+    textDecoration: 'underline',
+    paddingLeft: '10px',
+    backgroundColor: 'white',
+    '&:hover': {
+      cursor: 'pointer'
+    }
+  },
+  search: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  selectedschools: {
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'center',
+    alignItems: 'center',
+  }
+}))
+const ratingsdata = [
+  { name: "Pak turk international school", Ratings: 5 },
+  { name: "Roots school and college", Ratings: 4 },
+  { name: "Allied schools system", Ratings: 2},
+  { name: "Army public school", Ratings: 5},
 ];
 
-const pieChartData = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
+const datafee = [
+  { name: "Pak turk international school", primary: 5000, middle: 10000, higher: 12000 },
+  { name: "Roots school and college", primary: 3000, middle: 7000, higher: 10000 },
+  { name: "Allied schools system", primary: 8000, middle: 10000, higher: 11000 },
 ];
-
 export default function Charts(props) {
   var theme = useTheme();
-
+  var classes = useStyles();
+  const [getschools, setschool] = React.useState(['Pak turk international school',
+    'Roots international school',
+    'Some international school'])
   // local
   var [activeIndex, setActiveIndexId] = useState(0);
+  const remove = (index) => {
+    console.log(index)
+    const newe = getschools.filter((item) => item !== index);
+    setschool(newe)
+  }
 
   return (
     <>
-      <PageTitle title="Charts Page - Data Display" button={
-        <Button
-          variant="contained"
-          size="medium"
-          color="secondary"
-        >
-          Latest Reports
-        </Button>
-      } />
+      <Grid>
+        <Widget disableWidgetMenu>
+          <Typography >Comparing Schools makes it easier to choose a school. Add schools below to
+         compare them using multiple factors.</Typography>
+          <div className={classes.search}>
+            <InputBase className={classes.input} placeholder='Search school'></InputBase>
+            <Button className={classes.Button}>Compare</Button>
+          </div>
+          <div className={classes.selectedschools}>
+            {getschools.map(function (index) {
+              return (
+                <div className={classes.addschool}>
+                  <Typography>{getschools.indexOf(index) + 1}. {index}</Typography>
+                  <Typography className={classes.remove} onClick={() => remove(index)}>remove</Typography>
+                </div>
+              )
+            })}
+          </div>
+
+        </Widget>
+      </Grid>
+      <br />
       <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
-          <Widget title="Apex Line Chart" upperTitle noBodyPadding>
-            <ApexLineChart />
-          </Widget>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Widget title="Simple Line Chart" noBodyPadding upperTitle>
-            <ResponsiveContainer width="100%" height={350}>
-              <LineChart
-                width={500}
-                height={300}
-                data={lineChartData}
-                margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
+          <Widget title="Ratings Comparision" noBodyPadding upperTitle disableWidgetMenu>
+            <ResponsiveContainer width="100%" height={350} >
+              <BarChart width={730} height={250} data={ratingsdata}>
+
                 <XAxis dataKey="name" />
-                <YAxis />
+                <YAxis domain={[0,5]} label={{ value: 'Average Ratings', angle: -90 }}/>
                 <Tooltip />
                 <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="pv"
-                  stroke={theme.palette.primary.main}
-                  activeDot={{ r: 8 }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="uv"
-                  stroke={theme.palette.secondary.main}
-                />
-              </LineChart>
+                <Bar dataKey="Ratings" fill="#43425d" />
+              </BarChart>
+
             </ResponsiveContainer>
           </Widget>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Widget title="Pie Chart with Tooltips" noBodyPadding upperTitle>
+          <Widget title="Fee Comparision" noBodyPadding upperTitle disableWidgetMenu>
             <ResponsiveContainer width="100%" height={300}>
-              <PieChart width={200} height={300}>
-                <Pie
-                  activeIndex={activeIndex}
-                  activeShape={renderActiveShape}
-                  data={pieChartData}
-                  innerRadius={60}
-                  outerRadius={80}
-                  fill={theme.palette.primary.main}
-                  dataKey="value"
-                  onMouseEnter={(e, id) => setActiveIndexId(id)}
-                />
-              </PieChart>
+              <BarChart
+                width={500}
+                height={400}
+                data={datafee}
+                margin={{
+                  top: 20,
+                  right: 30,
+                  left: 20,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name"  />
+                
+                <YAxis label={{ value: 'FEE(PKR)', angle: -90, position: 'insideLeft' }} />/>
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="primary" fill="#8884d8" />
+                <Bar dataKey="middle" fill="#6884d8" />
+                <Bar dataKey="higher" fill="#43445d" />
+              </BarChart>
             </ResponsiveContainer>
           </Widget>
         </Grid>
@@ -107,76 +163,3 @@ export default function Charts(props) {
 }
 
 // ################################################################
-
-function renderActiveShape(props) {
-  var RADIAN = Math.PI / 180;
-  var {
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    startAngle,
-    endAngle,
-    fill,
-    payload,
-    percent,
-    value,
-  } = props;
-  var sin = Math.sin(-RADIAN * midAngle);
-  var cos = Math.cos(-RADIAN * midAngle);
-  var sx = cx + (outerRadius + 10) * cos;
-  var sy = cy + (outerRadius + 10) * sin;
-  var mx = cx + (outerRadius + 30) * cos;
-  var my = cy + (outerRadius + 30) * sin;
-  var ex = mx + (cos >= 0 ? 1 : -1) * 22;
-  var ey = my;
-  var textAnchor = cos >= 0 ? "start" : "end";
-
-  return (
-    <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-        {payload.name}
-      </text>
-      <Sector
-        cx={cx}
-        cy={cy}
-        innerRadius={innerRadius}
-        outerRadius={outerRadius}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        fill={fill}
-      />
-      <Sector
-        cx={cx}
-        cy={cy}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        innerRadius={outerRadius + 6}
-        outerRadius={outerRadius + 10}
-        fill={fill}
-      />
-      <path
-        d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
-        stroke={fill}
-        fill="none"
-      />
-      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-      <text
-        x={ex + (cos >= 0 ? 1 : -1) * 12}
-        y={ey}
-        textAnchor={textAnchor}
-        fill="#333"
-      >{`PV ${value}`}</text>
-      <text
-        x={ex + (cos >= 0 ? 1 : -1) * 12}
-        y={ey}
-        dy={18}
-        textAnchor={textAnchor}
-        fill="#999"
-      >
-        {`(Rate ${(percent * 100).toFixed(2)}%)`}
-      </text>
-    </g>
-  );
-}

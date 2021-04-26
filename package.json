@@ -19,6 +19,7 @@
     "@mdi/js": "^5.8.55",
     "@mdi/react": "^1.4.0",
     "apexcharts": "^3.20.0",
+    "chat-ui-react": "^0.2.13",
     "classnames": "^2.2.6",
     "date-fns": "latest",
     "font-awesome": "^4.7.0",

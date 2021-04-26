@@ -57,10 +57,11 @@ const reviews = [
   { id: '6', name: 'Another Name', content: 'Brother asked a very good questions.', rating: 3, date: '5 aug 2020' }
 
 ]
+
 export default function Reviews() {
   var classes = useStyles()
   const [open, setOpen] = React.useState('none');
-
+  
   const handleClickOpen = () => {
     open=='none'?setOpen("block"):setOpen("none");
   };
@@ -89,6 +90,7 @@ export default function Reviews() {
                 <br/>
                 <text className={classes.replybutton} onClick={handleClickOpen}>Reply</text>
                 <br/>
+                
                 <div style={{display:open, borderBottom:'1px solid rgba(0,0,0, 0.2)' }}>
                 <InputBase className={classes.comment}  placeholder='Reply here'></InputBase>
                 <Send class={classes.commButton} />
