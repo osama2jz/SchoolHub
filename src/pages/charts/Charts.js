@@ -11,21 +11,22 @@ import Widget from "../../components/Widget/Widget";
 
 const useStyles = makeStyles((theme) => ({
   main: {
-    marginLeft: '15%',
+    display:'flex',
+    flexDirection:"row",
   },
   Button: {
     color: "white",
-    fontSize: '15px',
-    marginLeft: '5px',
+    fontSize: '12px',
     backgroundColor: "#43425d",
     padding: '2px 10px 2px 10px',
     borderRadius: '5px',
+    marginLeft:'4px',
     '&:hover': {
       cursor: 'pointer',
     }
   },
   addschool: {
-    width: '600px',
+    width: '100%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -37,11 +38,8 @@ const useStyles = makeStyles((theme) => ({
   input: {
     border: '1px solid rgba(0, 0, 0, 0.3)',
     borderRadius: '5px',
-    width: '500px',
-  },
-  dp: {
-    width: '190px',
-    height: '190px'
+    marginTop:'3px',
+    width: '100%',
   },
   remove: {
     textDecoration: 'underline',
@@ -51,10 +49,36 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer'
     }
   },
+  result:{
+    borderBottom:'1px solid rgba(0,0,0, 0.3)',
+    width:'80%',
+    marginTop:'5px',
+    '&:hover':{
+      backgroundColor:'#F7F7F7',
+      cursor:'default',
+      borderRadius:'3px'
+    }
+  },
+  charts:{
+    display:'flex',
+    flexDirection:'column',
+    width:'60%',
+    marginLeft:'10px',
+    
+  },
+  searchdiv:{
+    width:'35%',
+    height:'90vh'
+  },
   search: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center'
+  },
+  searchb:{
+    display:'flex',
+    flexDirection:'row',
+    
   },
   selectedschools: {
     display: 'flex',
@@ -75,6 +99,11 @@ const datafee = [
   { name: "Roots school and college", primary: 3000, middle: 7000, higher: 10000 },
   { name: "Allied schools system", primary: 8000, middle: 10000, higher: 11000 },
 ];
+const searchresults = [
+  { id: '1', name: 'Army Public School, Islamabad', location: 'I-8 markaz, Islamabad' },
+  { id: '2', name: 'Pak Turk International School, Islamabad', location: 'Taramri chowk, Islamabad' },
+  { id: '3', name: 'Grafton School, Islamabad', location: 'Taramri chowk, Islamabad' }
+]
 export default function Charts(props) {
   var theme = useTheme();
   var classes = useStyles();
@@ -90,15 +119,11 @@ export default function Charts(props) {
   }
 
   return (
-    <>
-      <Grid>
+    <div className={classes.main}>
+      <div className={classes.searchdiv}>
         <Widget title="Schools Comparision" disableWidgetMenu>
-          <Typography >Comparing Schools makes it easier to choose a school. Add schools below to
-         compare them using multiple factors.</Typography>
-          <div className={classes.search}>
-            <InputBase className={classes.input} placeholder='Search school'></InputBase>
-            <Button className={classes.Button}>Compare</Button>
-          </div>
+          {/* <Typography >Comparing Schools makes it easier to choose a school. Add schools below to
+         compare them using multiple factors.</Typography> */}
           <div className={classes.selectedschools}>
             {getschools.map(function (index) {
               return (
@@ -109,12 +134,27 @@ export default function Charts(props) {
               )
             })}
           </div>
-
+          <div className={classes.searchb}>
+            <InputBase className={classes.input} placeholder='Search school'></InputBase>
+            <Button className={classes.Button}>Compare</Button>
+            </div>
+            <div>
+              {searchresults.map(function (item) {
+                return (
+                  <div class={classes.result}>
+                    <text>{item.name}</text>
+                    <br />
+                    <text style={{ fontSize: '10px' }}>{item.location}</text>
+                  </div>
+                )
+              })}
+            </div>
         </Widget>
-      </Grid>
+      </div>
       <br />
-      <Grid container spacing={4}>
-        <Grid item xs={12} md={6}>
+      <div className={classes.charts}>
+      
+        <div>
           <Widget title="Ratings Comparision" noBodyPadding upperTitle disableWidgetMenu>
             <ResponsiveContainer width="100%" height={350} >
               <BarChart width={730} height={250} data={ratingsdata}>
@@ -128,8 +168,9 @@ export default function Charts(props) {
 
             </ResponsiveContainer>
           </Widget>
-        </Grid>
-        <Grid item xs={12} md={6}>
+        </div>
+        <br/>
+        <div>
           <Widget title="Fee Comparision" noBodyPadding upperTitle disableWidgetMenu>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
@@ -154,9 +195,10 @@ export default function Charts(props) {
               </BarChart>
             </ResponsiveContainer>
           </Widget>
-        </Grid>
-      </Grid>
-    </>
+        </div>
+      
+      </div>
+    </div>
   );
 }
 
