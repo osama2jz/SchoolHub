@@ -1,4 +1,5 @@
 import React from "react";
+import { CometChat } from "@cometchat-pro/chat";
 import { HashRouter, Route, Switch, Redirect, Router } from "react-router-dom";
 
 // components
@@ -15,6 +16,7 @@ import School from '../pages/Admin/SchoolView/School'
 import Landing from './../pages/landing/Landing'
 import AdminAdding from '../pages/Admin/AdminAdding'
 import AdminDashboard from '../pages/Admin/AdminDashboard'
+//import Chat from '../pages/Chat/chat.js'
 // context
 import { useUserState } from "../context/UserContext";
 import Live from '../pages/Admin/DashboardTabs/LiveStream' 
@@ -27,11 +29,25 @@ import Faculty from '../pages/Admin/DashboardTabs/Faculty'
 import Feedback from '../pages/Admin/DashboardTabs/Feedback'
 import Profile from '../pages/UserProfile/UserProfile'
 import SuperAdmin from './LayoutSuperAdmin'
+import Forget from '../pages/ForgetPassword/Forget1'
+import Forget2 from '../pages/ForgetPassword/Forget2'
 import Dashboard from '../pages/SuperAdmin/Dashboard'
 export default function App() {
   // global
   var { isAuthenticated } = useUserState();
-
+  const appID = "323611fede35399";
+  const region = "us";
+  const appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(region).build();
+  CometChat.init(appID, appSetting).then(
+    () => {
+      console.log("Initialization completed successfully");
+      // You can now call login function.
+    },
+    error => {
+      console.log("Initialization failed with error:", error);
+      // Check the reason for error and take appropriate action.
+    }
+  );
   return (  
     <HashRouter>
       <Switch>
@@ -44,6 +60,8 @@ export default function App() {
         <Route exact path="/fee" component={EditFee} />
         <Route exact path="/acad" component={EditInfo} />
         <Route exact path="/live" component={Live} />
+        <Route exact path="/app/forget" component={Forget} />
+        <Route exact path="/app/forget2" component={Forget2} />
         <Route exact path="/requests" component={Faculty} />
         <Route exact path="/reviews" component={Feedback} />
         <Route exact path="/profile" component={Profile} />

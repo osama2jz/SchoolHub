@@ -1,5 +1,5 @@
 import React from "react";
-
+import { CometChat } from "@cometchat-pro/chat";
 var UserStateContext = React.createContext();
 var UserDispatchContext = React.createContext();
 
@@ -45,7 +45,7 @@ function useUserDispatch() {
   return context;
 }
 
-export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, admin, toLogin, toProfile, home };
+export {forget, UserProvider, useUserState, useUserDispatch, loginUser, signOut, admin, toLogin, toProfile, home };
 
 // ###########################################################
 
@@ -61,6 +61,17 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
       dispatch({ type: 'LOGIN_SUCCESS' })
       history.push('/app/home')
       console.log(history.location);
+      const authKey = "bdceaa21c369442ac6ddbbe1e68a7fc56596017a";
+const uid = "superhero5";
+
+CometChat.login(uid, authKey).then(
+  user => {
+    console.log("Login Successful:", { user });    
+  },
+  error => {
+    console.log("Login failed with exception:", { error });    
+  }
+);
     }, 2000);
   } else {
     dispatch({ type: "LOGIN_FAILURE" });
@@ -85,4 +96,7 @@ function toProfile(history) {
 }
 function home(history) {
   history.push("/app/home");
+}
+function forget(history) {
+  history.push("/app/forget");
 }

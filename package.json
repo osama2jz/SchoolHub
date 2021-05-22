@@ -28,11 +28,9 @@
     "material-ui-table-edit": "^3.0.3",
     "material-ui-time-picker": "^1.3.0",
     "mui-datatables": "^3.4.1",
-    "react": "^16.14.0",
     "react-apexcharts": "^1.3.7",
     "react-bootstrap-table-next": "^4.0.3",
     "react-calendar": "^3.3.1",
-    "react-dom": "^16.14.0",
     "react-google-maps": "^9.4.5",
     "react-grid-carousel": "^1.0.1",
     "react-hls-player": "^1.1.0",
@@ -43,14 +41,22 @@
     "react-rating-stars-component": "^2.2.0",
     "react-responsive-carousel": "^3.2.11",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
     "react-star-ratings": "^2.3.0",
     "react-step-progress": "^1.0.3",
     "react-syntax-highlighter": "^13.5.3",
     "react-toastify": "^6.0.8",
     "reactjs-popup": "^2.0.4",
     "recharts": "^1.6.2",
-    "tinycolor2": "^1.4.1"
+    "tinycolor2": "^1.4.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^4.0.3",
+    "@cometchat-pro/chat": "2.3.4-beta1",
+    "@emotion/core": "^10.0.35",
+    "dateformat": "^4.0.0",
+    "emoji-mart": "^3.0.0",
+    "react-html-parser": "^2.0.2",
+    "twemoji": "^13.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -77,4 +83,5 @@
     "@babel/helper-call-delegate": "^7.11.4",
     "prettier": "^2.1.1"
   }
+  
 }

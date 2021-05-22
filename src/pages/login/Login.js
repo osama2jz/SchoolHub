@@ -23,7 +23,7 @@ import logo from "../../logo.png";
 import google from "../../images/google.svg";
 
 // context
-import { useUserDispatch, loginUser, admin } from "../../context/UserContext";
+import { useUserDispatch, loginUser, admin, forget } from "../../context/UserContext";
 import Widget from "../../components/Widget/Widget";
 function Login(props) {
   var classes = useStyles();
@@ -146,6 +146,7 @@ function Login(props) {
                   </Button>
                 
                 <Button
+                onClick={() =>forget(props.history)}
                   size="large"
                   className={classes.forgetButton}
                 >
