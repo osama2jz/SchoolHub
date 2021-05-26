@@ -83,5 +83,4 @@
     "@babel/helper-call-delegate": "^7.11.4",
     "prettier": "^2.1.1"
   }
-  
 }

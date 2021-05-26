@@ -36,7 +36,7 @@ import Dashboard from '../pages/SuperAdmin/Dashboard'
 export default function App() {
   // global
   var { isAuthenticated } = useUserState();
-  const appID = "323611fede35399";
+  const appID = "3372201956af684";
   const region = "us";
   const appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(region).build();
   CometChat.init(appID, appSetting).then(
@@ -49,6 +49,17 @@ export default function App() {
       // Check the reason for error and take appropriate action.
     }
   );
+  const authKey = "6686381f7d6999ea04c5eb3feea375ae7d205b0f";
+const uid = "60aaa9dc83239218338ab022";
+
+CometChat.login(uid, authKey).then(
+  user => {
+    console.log("Login Successful:", { user });    
+  },
+  error => {
+    console.log("Login failed with exception:", { error });    
+  }
+);  
   return (  
     <HashRouter>
       <Switch>

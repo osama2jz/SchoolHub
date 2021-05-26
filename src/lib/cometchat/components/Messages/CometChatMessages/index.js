@@ -180,7 +180,7 @@ class CometChatMessages extends React.PureComponent {
       case enums.ACTIONS["MESSAGE_READ"]: {
 
         if (this.props?.actionGenerated) {
-          this.props?.actionGenerated(action, messages);
+          this.props.actionGenerated(action, messages);
         }
 
         break;

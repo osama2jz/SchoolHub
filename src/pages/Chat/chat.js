@@ -1,13 +1,11 @@
-import { CometChatUI } from "../../src";
+import { CometChatConversationListWithMessages } from "../../lib/cometchat";
 import React from "react";
-class App extends React.Component {
-  
-  render() {
+export default function Chat() {
     
     return (
-      <div style={{width: '800px', height:'800px' }}>
-        <CometChatUI />
+      <div style={{width: '75vw', height:'80vh' }}>
+        <CometChatConversationListWithMessages />
       </div>
     );
-    }
+    
 }

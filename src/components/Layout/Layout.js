@@ -16,7 +16,7 @@ import Live from "../../pages/Live/live";
 import LiveAvailable from "../../pages/Live/LiveAvailable";
 import Maps from "../../pages/maps";
 import Charts from "../../pages/charts";
-import Signin from '../../pages/profiling/signin/signinNew'
+import Chat from '../../pages/Chat/Chat'
 import Footer from '../Footer/footer'
 function Layout(props) {
   var classes = useStyles();
@@ -34,6 +34,7 @@ function Layout(props) {
               <Route path="/app/typography" component={Dashboard} />
               <Route path="/app/map" component={Maps} />
               <Route path="/app/live" component={LiveAvailable} />
+              <Route path="/app/chat" component={Chat} />
               <Route
                 exact
                 path="/app/ui"

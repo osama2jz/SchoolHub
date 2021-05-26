@@ -1,6 +1,5 @@
 export * from "./Calls/";
 export * from "./Chats/";
-export * from "./Groups/";
 export * from "./Messages/";
 export * from "./Shared/";
 

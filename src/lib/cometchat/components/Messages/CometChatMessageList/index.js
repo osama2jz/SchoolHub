@@ -103,7 +103,7 @@ class CometChatMessageList extends React.PureComponent {
 
       this.messageCount = 0;
       this.decoratorMessage = Translator.translate("LOADING", this.props.lang);
-      this.MessageListManager?.removeListeners();
+      //this.MessageListManager?.removeListeners();
 
       if (this.props.parentMessageId) {
         this.MessageListManager = new MessageListManager(this.props.widgetsettings, this.context.item, this.context.type, this.props.parentMessageId);
@@ -179,7 +179,6 @@ class CometChatMessageList extends React.PureComponent {
         || (item.hasOwnProperty("guid") && this.context.item.hasOwnProperty("guid") && item.guid === this.context.item.guid)) {
         this.props.actionGenerated(actionGenerated, messageList);
       }
-
     }).catch(error => {
 
       this.decoratorMessage = Translator.translate("ERROR", this.props.lang);
