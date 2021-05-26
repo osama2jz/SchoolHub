@@ -31,6 +31,7 @@ import Profile from '../pages/UserProfile/UserProfile'
 import SuperAdmin from './LayoutSuperAdmin'
 import Forget from '../pages/ForgetPassword/Forget1'
 import Forget2 from '../pages/ForgetPassword/Forget2'
+import LiveStream from '../pages/Live/live'
 import Dashboard from '../pages/SuperAdmin/Dashboard'
 export default function App() {
   // global
@@ -60,6 +61,7 @@ export default function App() {
         <Route exact path="/fee" component={EditFee} />
         <Route exact path="/acad" component={EditInfo} />
         <Route exact path="/live" component={Live} />
+        <Route exact path="/app/liveStream" component={LiveStream} />
         <Route exact path="/app/forget" component={Forget} />
         <Route exact path="/app/forget2" component={Forget2} />
         <Route exact path="/requests" component={Faculty} />

@@ -13,6 +13,7 @@ import Sidebar from "../Sidebar";
 import Dashboard from "../../pages/dashboard";
 import Home from "../../pages/home/Home";
 import Live from "../../pages/Live/live";
+import LiveAvailable from "../../pages/Live/LiveAvailable";
 import Maps from "../../pages/maps";
 import Charts from "../../pages/charts";
 import Signin from '../../pages/profiling/signin/signinNew'
@@ -32,7 +33,7 @@ function Layout(props) {
               <Route path="/app/home" component={Home} />
               <Route path="/app/typography" component={Dashboard} />
               <Route path="/app/map" component={Maps} />
-              <Route path="/app/live" component={Live} />
+              <Route path="/app/live" component={LiveAvailable} />
               <Route
                 exact
                 path="/app/ui"
